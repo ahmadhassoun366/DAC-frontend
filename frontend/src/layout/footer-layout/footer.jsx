@@ -86,7 +86,7 @@ const footer = () => {
             href="#"
             className="text-2xl font-bold text-gray-800 transition-colors duration-300 hover:text-gray-700 dark:text-white dark:hover:text-gray-300"
           >
-            Brand
+            DAC
           </a>
 
           <div className="-mx-2 flex">
