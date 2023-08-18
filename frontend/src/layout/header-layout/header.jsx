@@ -10,6 +10,7 @@ const header = () => {
             <Link
               className="text-2xl font-bold text-gray-200  lg:text-3xl"
               href="#"
+              to="/"
             >
               DAC
             </Link>
@@ -86,7 +87,7 @@ const header = () => {
 
           <Link
             className="mt-4 block h-10 transform rounded-md border px-5 py-2 text-center text-sm capitalize text-gray-200 transition-colors duration-300 hover:bg-gray-100  hover:text-gray-700 lg:mt-0 lg:w-auto mr-4"
-            href="#"
+            to="/login"
           >
             Sign In
           </Link>

@@ -10,7 +10,7 @@ const index = () => {
   return (
     <>
       <Header />
-      <div className="mb-10">
+      <div className="">
         <Hero />
         <Partnetship />
         <Services />

@@ -5,7 +5,7 @@ const price = () => {
   return (
     <div className="bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 pt-28">
-        <div className="xl:-mx-8 xl:flex xl:items-center">
+        <div className="xl:-mx-8 xl:flex xl:items-center" style={{ paddingBottom: "6%" }}>
           <div className="flex flex-col items-center xl:mx-8 xl:items-start">
             <h1 className="text-3xl font-medium capitalize text-gray-800 dark:text-white lg:text-4xl">
               Our Pricing Plan
@@ -50,12 +50,11 @@ const price = () => {
                   </h1>
 
                   <p className="mt-4 text-gray-500 dark:text-gray-300">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Nostrum quam voluptatibus
+                    Our Flexible Pricing Plan is designed for emerging businesses seeking growth. With access to essential tools and services, this plan offers incredible value at competitive rates. You’ll enjoy features like basic accounting solutions, store management features, and basic analytics tools, all geared to streamline your operations.
                   </p>
 
                   <h2 className="mt-4 text-2xl font-medium text-gray-700 dark:text-gray-300 sm:text-4xl">
-                    $3.00 <span className="text-base font-medium">/Month</span>
+                    $50.00 <span className="text-base font-medium">/Month</span>
                   </h2>
 
                   <p className="mt-1 text-gray-500 dark:text-gray-300">
@@ -128,7 +127,7 @@ const price = () => {
                       </svg>
 
                       <span className="mx-4 text-gray-700 dark:text-gray-300">
-                        Chat support
+                        Finance Simplified
                       </span>
                     </div>
 
@@ -147,7 +146,7 @@ const price = () => {
                       </svg>
 
                       <span className="mx-4 text-gray-700 dark:text-gray-300">
-                        Optimize hashtags
+                        Streamlined Business Processes
                       </span>
                     </div>
 
@@ -166,7 +165,7 @@ const price = () => {
                       </svg>
 
                       <span className="mx-4 text-gray-700 dark:text-gray-300">
-                        Mobile app
+                        Optimized Store Operations
                       </span>
                     </div>
 
@@ -199,12 +198,11 @@ const price = () => {
                   </h1>
 
                   <p className="mt-4 text-gray-500 dark:text-gray-300">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Nostrum quam voluptatibus
+                    Built for well-established businesses, our Premium Enterprise Plan offers an all-inclusive suite of advanced tools and services. With this plan, gain unrestricted access to our complete service range, including advanced data analytics, full-fledged CRM and ERP systems, comprehensive store management, and strategic digital marketing services. This plan is for those who desire the utmost flexibility, maximum accessibility, and superior support to drive complex operations and achieve ambitious business goals.
                   </p>
 
                   <h2 className="mt-4 text-2xl font-medium text-gray-700 dark:text-gray-300 sm:text-4xl">
-                    $50.00 <span className="text-base font-medium">/life time</span>
+                    $100.00 <span className="text-base font-medium">/life time</span>
                   </h2>
 
                   <p className="mt-1 text-gray-500 dark:text-gray-300">
@@ -277,7 +275,7 @@ const price = () => {
                       </svg>
 
                       <span className="mx-4 text-gray-700 dark:text-gray-300">
-                        Chat support
+                        Finance Simplified
                       </span>
                     </div>
 
@@ -296,7 +294,7 @@ const price = () => {
                       </svg>
 
                       <span className="mx-4 text-gray-700 dark:text-gray-300">
-                        Optimize hashtags
+                        Streamlined Business Processes
                       </span>
                     </div>
 
@@ -315,7 +313,7 @@ const price = () => {
                       </svg>
 
                       <span className="mx-4 text-gray-700 dark:text-gray-300">
-                        Mobile app
+                        Optimized Store Operations
                       </span>
                     </div>
 
