@@ -51,9 +51,9 @@ const index = () => {
                     </label>
                   </div>
                   <div className="relative">
-                    <button className="bg-gray-900 text-white rounded-md px-4 py-1 font-semibold">
+                    <Link className="bg-gray-900 text-white rounded-md px-4 py-1 font-semibold" to="/dashboard">
                       Submit
-                    </button>
+                    </Link>
                   </div>
                   <div className="relative">
                     <Link to="/signup" className="absolute right-0 bottom-0 p-3 bg-CustomColor4 text-CustomColor1 rounded-md">
