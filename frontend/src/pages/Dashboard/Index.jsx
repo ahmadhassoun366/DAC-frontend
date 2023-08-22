@@ -4,6 +4,7 @@ import NavBar from "./NavBar/Navbar";
 import SideBar from "./SideBar/SideBar";
 import MainContent from "./MainContent/MainContent"
 import Footer from "./Footer/Footer";
+
 const index = () => {
     return (
         <div>

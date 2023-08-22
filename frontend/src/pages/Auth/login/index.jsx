@@ -1,7 +1,22 @@
-import React from "react";
+import { React, useState } from "react";
 import Header from "../../../layout/header-layout/header";
 import { Link } from "react-router-dom";
-const index = () => {
+import { useAuth } from '../../../AuthProvider/AuthProvider';
+
+const Index = () => {
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  // const { login } = useAuth();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // call the login function with the entered email and password
+    // await login(email, password);
+  }
+
   return (
     <>
       <Header />
@@ -70,4 +85,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Index;
