@@ -1,8 +1,13 @@
-import React, { useState } from "react";
-import Header from "../../../layout/header-layout/header";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from 'react';
+import Header from '../../../layout/header-layout/header';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../AuthProvider/AuthProvider' // Change this to the correct path
+
 const Index = () => {
-  // Assume we have onSignup function that handles sign up process
+
+  const { register } = useContext(AuthContext);
+  const history = useNavigate();
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -19,7 +24,14 @@ const Index = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(form);
+
+    if (form.password === form.confirmPassword) {
+      register(form.email, form.password, form.firstName, form.lastName).then(() => {
+        history.push("/dashboard"); // navigate user to the dashboard page after successful registration
+      });
+    } else {
+      alert('Password and Confirm Password should match!');
+    }
   }
 
   return (
@@ -68,7 +80,6 @@ const Index = () => {
                   </button>
                   <button className="w-8 h-8 rounded-md flex items-center justify-center bg-white text-white">
                     <img src="icons8-gmail-144.png" alt="" />
-
                   </button>
                 </div>
               </div>

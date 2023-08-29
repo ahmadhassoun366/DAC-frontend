@@ -35,50 +35,96 @@ const AuthProvider = ({ children }) => {
         email,
         password
       });
-  
+
       const { refresh, access } = response.data;
-  
+
       setIsAuthenticated(true);
       setRefreshToken(refresh);
       setAccessToken(access);
       console.log("refresh token is " + refresh);
       console.log("access token is " + access);
-  
+
       setError('');
 
       let userId
-  
+
       if (refresh) {
         const decodedToken = jwt_decode(refresh);
-        console.log("decoded",decodedToken);
+        console.log("decoded", decodedToken);
         userId = decodedToken.user_id; // Assuming the user ID is stored in the 'user_id' claim
         console.log('User ID:', userId);
         // Use the user ID as needed
         setUserId(userId)
-        localStorage.setItem('userId', userId);        
+        localStorage.setItem('userId', userId);
       }
-      if(userId){
+      if (userId) {
         const managerResponse = await axios.get(`http://127.0.0.1:8000/api/manager/${userId}/`);
-        console.log("manager", managerResponse.data ); 
-      if(managerResponse.data.length > 0){
-        console.log("manager Logged In Successfully");
-        setSeekerId(managerResponse.data[0].id)
-        localStorage.setItem('seekerId', managerResponse.data[0].id);
-        navigate('/dashboard');
+        console.log("manager", managerResponse.data);
+        if (managerResponse.data.length > 0) {
+          console.log("manager Logged In Successfully");
+          setSeekerId(managerResponse.data[0].id)
+          localStorage.setItem('seekerId', managerResponse.data[0].id);
+          navigate('/dashboard');
+        }
       }
-    }
 
 
 
-      
+
     } catch (error) {
       if (error.response.status === 401)
-      alert('Invalid email or password.');
-    } 
-    
-  };
-  
+        alert('Invalid email or password.');
+    }
 
+  };
+
+  const register = async (email, password, username, first_name, last_name) => {
+    try {
+      const response = await axios.post(`http://127.0.0.1:8000/api/accountant/register`, {
+        email,
+        password,
+        username, // Assuming that your backend requires username, first_name and last_name.
+        first_name,
+        last_name
+      });
+
+      const { refresh, access } = response.data;
+
+      setIsAuthenticated(true);
+      setRefreshToken(refresh);
+      setAccessToken(access);
+      console.log("refresh token is " + refresh);
+      console.log("access token is " + access);
+
+      setError('');
+
+      let userId
+
+      if (refresh) {
+        const decodedToken = jwt_decode(refresh);
+        console.log("decoded", decodedToken);
+        userId = decodedToken.user_id; // Assuming the user ID is stored in the 'user_id' claim
+        console.log('User ID:', userId);
+        setUserId(userId)
+        localStorage.setItem('userId', userId);
+      }
+      if (userId) {
+        const managerResponse = await axios.get(`http://127.0.0.1:8000/api/manager/${userId}/`);
+        console.log("manager", managerResponse.data);
+        if (managerResponse.data.length > 0) {
+          console.log("User Registered and Logged In Successfully");
+          setSeekerId(managerResponse.data[0].id)
+          localStorage.setItem('seekerId', managerResponse.data[0].id);
+          navigate('/dashboard');
+        }
+      }
+
+    } catch (error) {
+      if (error.response.status === 400)
+        alert('User already exists or other registration error.');
+    }
+
+  };
   const logout = () => {
     setIsAuthenticated(false);
     setUser(null);
@@ -95,11 +141,6 @@ const AuthProvider = ({ children }) => {
     const isAuthenticatedValue = localStorage.getItem('isAuthenticated');
     setIsAuthenticated(isAuthenticatedValue === 'true');
   }, []);
-
-
-  const register = async () => {
-
-  };
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, user, refreshToken, email, password, error, login, logout, register }}>
