@@ -37,17 +37,17 @@ const Index = () => {
     <>
       <Header />
       <div className=" bg-gray-100 py-5 flex flex-row justify-center sm:py-12">
-        <div className="flex items-center justify-center flex-1">
+        <div className="flex items-center justify-center w-[40%]">
           <img
             src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
             alt="Logo"
-            className="w-3/4 md:block hidden"
+            className="md:block hidden"
           />
         </div>
-        <div className="md:flex-1 w-full">
+        <div className="w-2/4">
           <form
             onSubmit={handleLogin}
-            className="relative py-3 w-full"
+            className="relative py-3 w-2/4"
             style={{
               width: "70%",
               height: "100%",
