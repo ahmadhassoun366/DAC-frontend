@@ -83,7 +83,7 @@ const AuthProvider = ({ children }) => {
       const response = await axios.post(`http://127.0.0.1:8000/api/accountant/register`, {
         email,
         password,
-        username, // Assuming that your backend requires username, first_name and last_name.
+        username,
         first_name,
         last_name
       });
@@ -103,7 +103,7 @@ const AuthProvider = ({ children }) => {
       if (refresh) {
         const decodedToken = jwt_decode(refresh);
         console.log("decoded", decodedToken);
-        userId = decodedToken.user_id; // Assuming the user ID is stored in the 'user_id' claim
+        userId = decodedToken.user_id;
         console.log('User ID:', userId);
         setUserId(userId)
         localStorage.setItem('userId', userId);
