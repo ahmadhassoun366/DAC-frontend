@@ -1,40 +1,93 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import Header from '../../../layout/header-layout/header';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../AuthProvider/AuthProvider' // Change this to the correct path
 
 const Index = () => {
 
-  const { register } = useContext(AuthContext);
   const history = useNavigate();
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [first_name, setFirst_name] = useState('');
+  const [last_name, setLast_name] = useState('');
+  const [phone, setPhone] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [passwordMatch, setPasswordMatch] = useState(true);
 
-  const [form, setForm] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    role: "",
-    description: "",
-    phone: ""
-  });
+  
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setPasswordError('');
+    setPasswordMatch(true);
+  };
 
-  const handleInputChange = e => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    console.log("form", form);
-  }
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+    setPasswordError('');
+    setPasswordMatch(true);
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    if (form.password === form.confirmPassword) {
-      register(form.email, form.password, form.firstName, form.lastName, form.phone).then(() => {
-        history.push("/dashboard"); // navigate user to the dashboard page after successful registration
-      });
+  const validatePasswords = () => {
+    if (password !== confirmPassword) {
+      setPasswordMatch(false);
     } else {
-      alert('Password and Confirm Password should match!');
+      setPasswordMatch(true);
     }
-  }
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+  
+  const handleFirstNameChange = (e) => {
+    setFirst_name(e.target.value);
+  };
+  
+  const handleLastNameChange = (e) => {
+    setLast_name(e.target.value);
+  };
+  
+  const handlePhoneChange = (e) => {
+    setPhone(e.target.value);
+  };
+
+
+  const handleSignUp = async (e) => {
+    e.preventDefault();   
+      const registrationData = {
+        first_name,
+        last_name,
+        phone,
+        email,
+        password,
+      };
+
+     await fetch(`http://127.0.0.1:8000/api/manager/register`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(registrationData),
+
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          // Handle the response data
+
+          setFirst_name('')
+          setLast_name('')
+          setPassword('')
+          setPhone('')
+          setConfirmPassword('')
+          console.log(data);
+          history.push("/login"); 
+        })
+        .catch((error) => {
+          // Handle the error
+          console.error(error);
+        });
+   
+  };
 
   return (
     <>
@@ -49,29 +102,19 @@ const Index = () => {
                 </div>
                 <h1 className="font-semibold text-gray-700">Sign up</h1>
               </div>
-              <form onSubmit={handleSubmit} className="divide-y divide-gray-200">
+              <form onSubmit={handleSignUp} className="divide-y divide-gray-200">
                 <input type="text" placeholder="First Name" name="firstName"
-                  onChange={handleInputChange} required className="w-full h-10 mb-2" />
+                  onChange={handleFirstNameChange} required className="w-full h-10 mb-2" />
                 <input type="text" placeholder="Last Name" name="lastName"
-                  onChange={handleInputChange} required className="w-full h-10 mb-2" />
+                  onChange={handleLastNameChange} required className="w-full h-10 mb-2" />
                 <input type="email" placeholder="Email" name="email"
-                  onChange={handleInputChange} required className="w-full h-10 mb-2" />
+                  onChange={handleEmailChange} required className="w-full h-10 mb-2" />
                 <input type="phone" placeholder="phone" name="phone"
-                  onChange={handleInputChange} required className="w-full h-10 mb-2" />
+                  onChange={handlePhoneChange} required className="w-full h-10 mb-2" />
                 <input type="password" placeholder="Password" name="password"
-                  onChange={handleInputChange} required className="w-full h-10 mb-2" />
+                  onChange={handlePasswordChange} required className="w-full h-10 mb-2" />
                 <input type="password" placeholder="Confirm Password" name="confirmPassword"
-                  onChange={handleInputChange} required className="w-full h-10 mb-2" />
-                <select name="role" onChange={handleInputChange} className="w-full h-10 mb-2">
-                  <option value="">Select Role</option>
-                  <option value="accountant">Accountant</option>
-                  <option value="company">Company</option>
-                  <option value="admin">Admin</option>
-                  <option value="store_manager">Store Manager</option>
-                  <option value="client">Client</option>
-                </select>
-                <textarea name="description" placeholder="Description for your profile"
-                  onChange={handleInputChange} className="w-full h-20 resize-none mb-2" />
+                  onChange={handleConfirmPasswordChange}  onBlur={validatePasswords} required className="w-full h-10 mb-2" />
                 <button type="submit" className="mt-4 w-full font-semibold text-white bg-blue-500 py-2 rounded-md">
                   Signup
                 </button>
