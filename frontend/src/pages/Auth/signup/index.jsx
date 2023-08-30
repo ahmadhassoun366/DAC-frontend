@@ -15,7 +15,8 @@ const Index = () => {
     password: "",
     confirmPassword: "",
     role: "",
-    description: ""
+    description: "",
+    phone: ""
   });
 
   const handleInputChange = e => {
@@ -27,7 +28,7 @@ const Index = () => {
     event.preventDefault();
 
     if (form.password === form.confirmPassword) {
-      register(form.email, form.password, form.firstName, form.lastName).then(() => {
+      register(form.email, form.password, form.firstName, form.lastName, form.phone).then(() => {
         history.push("/dashboard"); // navigate user to the dashboard page after successful registration
       });
     } else {
@@ -54,6 +55,8 @@ const Index = () => {
                 <input type="text" placeholder="Last Name" name="lastName"
                   onChange={handleInputChange} required className="w-full h-10 mb-2" />
                 <input type="email" placeholder="Email" name="email"
+                  onChange={handleInputChange} required className="w-full h-10 mb-2" />
+                <input type="phone" placeholder="phone" name="phone"
                   onChange={handleInputChange} required className="w-full h-10 mb-2" />
                 <input type="password" placeholder="Password" name="password"
                   onChange={handleInputChange} required className="w-full h-10 mb-2" />

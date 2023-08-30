@@ -78,13 +78,14 @@ const AuthProvider = ({ children }) => {
 
   };
 
-  const register = async (email, password, first_name, last_name) => {
+  const register = async (email, password, first_name, last_name, phone) => {
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/api/auditor/register`, {
+      const response = await axios.post(`http://127.0.0.1:8000/api/manager/register`, {
         email,
         password,
         first_name,
-        last_name
+        last_name,
+        phone,
       });
 
       const { refresh, access } = response.data;

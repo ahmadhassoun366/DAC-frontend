@@ -4,6 +4,7 @@ import Home from "./pages/Home/index";
 import Login from "./pages/Auth/login/index";
 import Signup from "./pages/Auth/signup/index";
 import Dashboard from "./pages/Dashboard/Index";
+import CreateCompany from "./pages/CreateCompany/CreateCompany";
 import { AuthProvider } from "../src/AuthProvider/AuthProvider";
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/CreateCompany" element={<CreateCompany />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
