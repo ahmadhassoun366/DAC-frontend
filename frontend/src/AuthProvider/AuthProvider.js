@@ -77,54 +77,6 @@ const AuthProvider = ({ children }) => {
     }
 
   };
-
-  const register = async (email, password, first_name, last_name, phone) => {
-    try {
-      const response = await axios.post(`http://127.0.0.1:8000/api/manager/register`, {
-        email,
-        password,
-        first_name,
-        last_name,
-        phone,
-      });
-
-      const { refresh, access } = response.data;
-
-      setIsAuthenticated(true);
-      setRefreshToken(refresh);
-      setAccessToken(access);
-      console.log("refresh token is " + refresh);
-      console.log("access token is " + access);
-
-      setError('');
-
-      let userId
-
-      if (refresh) {
-        const decodedToken = jwt_decode(refresh);
-        console.log("decoded", decodedToken);
-        userId = decodedToken.user_id;
-        console.log('User ID:', userId);
-        setUserId(userId)
-        localStorage.setItem('userId', userId);
-      }
-      if (userId) {
-        const managerResponse = await axios.get(`http://127.0.0.1:8000/api/manager/${userId}/`);
-        console.log("manager", managerResponse.data);
-        if (managerResponse.data.length > 0) {
-          console.log("User Registered and Logged In Successfully");
-          setSeekerId(managerResponse.data[0].id)
-          localStorage.setItem('seekerId', managerResponse.data[0].id);
-          navigate('/dashboard');
-        }
-      }
-
-    } catch (error) {
-      if (error.response.status === 400)
-        alert('User already exists or other registration error.');
-    }
-
-  };
   const logout = () => {
     setIsAuthenticated(false);
     setUser(null);
