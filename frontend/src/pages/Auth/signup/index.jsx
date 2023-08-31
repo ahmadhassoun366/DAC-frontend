@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import Header from "../../../layout/header-layout/Header";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Index = () => {
-  const history = useNavigate();
+  const navigate  = useNavigate();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [first_name, setFirst_name] = useState("");
@@ -76,7 +77,8 @@ const Index = () => {
         setPhone("");
         setConfirmPassword("");
         console.log(data);
-        history.push("/login");
+        toast.success("Successfully Registered!");
+        navigate("/login");
       })
       .catch((error) => {
         // Handle the error
@@ -87,6 +89,7 @@ const Index = () => {
   return (
     <>
       <Header />
+      
       <div className="min-h-screen bg-gray-100 py-24 flex flex-col items-center justify-center sm:py-24">
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
           <div className="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
@@ -98,7 +101,7 @@ const Index = () => {
               </div>
               <form
                 onSubmit={handleSignUp}
-                className="divide-y divide-gray-200 my-5"
+                className="divide-y divide-gray-400 my-5"
               >
                 <input
                   type="text"
@@ -149,9 +152,10 @@ const Index = () => {
                   required
                   className="w-full h-10 mb-2  px-5"
                 />
+                <hr/>
                 <button
                   type="submit"
-                  className="mt-4 w-full font-semibold text-white bg-blue-500 py-2 rounded-md"
+                  className="mt-4 w-full font-semibold text-white bg-gray-900 py-2 rounded-md"
                 >
                   Signup
                 </button>

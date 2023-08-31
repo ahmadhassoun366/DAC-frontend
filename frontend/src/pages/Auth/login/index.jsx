@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import Header from "../../../layout/header-layout/Header";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { toast } from 'react-toastify';
 
 const Index = () => {
   const navigate = useNavigate();
@@ -28,7 +29,8 @@ const Index = () => {
     try {
       // Call your login function passing email and password
       await login(email, password);
-      console.log("checking fetch");
+      toast.success("Successfully LoggedIn!"); 
+
     } catch (error) {
       setError("Invalid email or password"); // Set error message if login fails
     }
