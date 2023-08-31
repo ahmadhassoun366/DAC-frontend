@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-
+import { toast } from "react-toastify";
 // Create the AuthContext
 const AuthContext = createContext();
 
@@ -62,6 +62,7 @@ const AuthProvider = ({ children }) => {
           console.log("manager Logged In Successfully");
           setSeekerId(managerResponse.data[0].id);
           localStorage.setItem("seekerId", managerResponse.data[0].id);
+          toast.success("Successfully LoggedIn!"); 
           navigate("/dashboard");
         }
       }

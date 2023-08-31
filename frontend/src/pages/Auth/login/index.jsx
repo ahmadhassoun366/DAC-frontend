@@ -29,10 +29,10 @@ const Index = () => {
     try {
       // Call your login function passing email and password
       await login(email, password);
-      toast.success("Successfully LoggedIn!"); 
+      
 
     } catch (error) {
-      setError("Invalid email or password"); // Set error message if login fails
+      toast.error("Invalid email or password"); // Set error message if login fails
     }
   };
   return (

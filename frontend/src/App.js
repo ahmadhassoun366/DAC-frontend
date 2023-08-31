@@ -6,9 +6,8 @@ import Signup from "./pages/Auth/signup/index";
 import Dashboard from "./pages/Dashboard/Index";
 import CreateCompany from "./pages/CreateCompany/CreateCompany";
 import { AuthProvider } from "../src/AuthProvider/AuthProvider";
-import {toast} from 'react-toastify';
+import { ToastContainer} from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
-toast.configure()
 
 function App() {
   return (
@@ -21,6 +20,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/CreateCompany" element={<CreateCompany />} />
         </Routes>
+        <ToastContainer />
       </AuthProvider>
     </BrowserRouter>
   );
