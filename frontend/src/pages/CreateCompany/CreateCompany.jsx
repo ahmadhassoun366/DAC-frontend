@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
 const CreateCompany = () => {
     const history = useNavigate();
     const [name, setName] = useState('');
@@ -12,29 +13,29 @@ const CreateCompany = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // todo: submit form http://127.0.0.1:8000/api/company_register
         e.preventDefault();
+
+        var ManagerId = localStorage.getItem('userId');
+        console.log("SeekerId", ManagerId);
         const registrationData = {
             name,
             brand,
             financeNumber,
             registerNumber,
             address,
-            phone
+            phone,
+            ManagerId
         };
-
-        await fetch(`http://127.0.0.1:8000/api/manager/register`, {
+        await fetch(`http://127.0.0.1:8000/api/company_register/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(registrationData),
-
         })
             .then((response) => response.json())
             .then((data) => {
                 // Handle the response data
-
                 name('')
                 brand('')
                 financeNumber('')
@@ -42,6 +43,7 @@ const CreateCompany = () => {
                 registerNumber('')
                 address('')
                 phone('')
+                ManagerId('')
                 console.log(data);
                 history.push("/login");
             })
