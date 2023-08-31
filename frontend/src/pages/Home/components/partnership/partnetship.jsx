@@ -5,15 +5,15 @@ const partnetship = () => {
     return (
         <div class="container mx-auto px-6 py-16 pt-28 text-center">
             <div class="mx-auto max-w-lg">
-                <h1 class="text-3xl font-bold text-CustomColor2 md:text-4xl">Strategic Business Solution Partnerships</h1>
+                <h1 class="text-3xl font-bold text-gray-900 md:text-4xl">Strategic Business Solution Partnerships</h1>
 
-                <p class="mt-6 text-CustomColor2">Under our Strategic Business Solution Partnerships, we collaborate with diverse businesses aiming to streamline their operations and enhance their productivity. From accounting to store management and beyond, our comprehensive suite of services caters to your unique business needs. Join us to redefine your business strategies, optimize efficiency and drive your business towards prolific growth.</p>
+                <p class="mt-6 text-gray-500">Under our Strategic Business Solution Partnerships, we collaborate with diverse businesses aiming to streamline their operations and enhance their productivity. From accounting to store management and beyond, our comprehensive suite of services caters to your unique business needs. Join us to redefine your business strategies, optimize efficiency and drive your business towards prolific growth.</p>
 
-                <div class="mx-auto mt-6 w-full max-w-sm rounded-md border bg-transparent focus-within:border-blue-400 focus-within:ring focus-within:ring-blue-300 focus-within:ring-opacity-40 dark:border-gray-700 dark:focus-within:border-blue-300">
+                <div class="mx-auto mt-6 w-full max-w-sm rounded-md border bg-transparent focus-within:border-gray-400 focus-within:ring focus-within:ring-gray-300 focus-within:ring-opacity-40 dark:border-gray-700 dark:focus-within:border-gray-300">
                     <form class="flex flex-col md:flex-row">
                         <input type="email" placeholder="Enter your email address" class="m-1 h-10 flex-1 appearance-none border-none bg-transparent px-4 py-2 text-gray-700 placeholder-gray-400 focus:placeholder-transparent focus:outline-none focus:ring-0 dark:text-gray-200" />
 
-                        <button type="button" class="m-1 h-10 transform rounded-md bg-blue-500 px-4 py-2 text-white transition-colors duration-300 hover:bg-blue-400 focus:bg-blue-400 focus:outline-none">Join Us</button>
+                        <button type="button" class="m-1 h-10 transform rounded-md bg-gray-900 px-4 py-2 text-white transition-colors duration-300 hover:bg-gray-500 focus:bg-gray-200 focus:outline-none">Join Us</button>
                     </form>
                 </div>
             </div>

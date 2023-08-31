@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import Header from "../../../layout/header-layout/header";
+import Header from "../../../layout/header-layout/Header";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
@@ -36,28 +36,23 @@ const Index = () => {
   return (
     <>
       <Header />
-      <div className=" bg-gray-100 py-5 flex flex-row justify-center sm:py-12">
-        <div className="flex items-center justify-center w-[40%]">
+      <div className=" bg-gray-100 flex flex-row justify-center py-28">
+        <div className="flex items-center justify-center sm:w-[40%] w-0">
           <img
             src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
             alt="Logo"
             className="md:block hidden"
           />
         </div>
-        <div className="w-2/4">
+        <div className="sm:w-2/4 w-11/12 flex justify-center">
           <form
             onSubmit={handleLogin}
-            className="relative py-3 w-2/4"
-            style={{
-              width: "70%",
-              height: "100%",
-              margin: "auto",
-              marginRight: "10%",
-            }}
+            className="relative py-3 sm:w-3/4 w-full"
+           
           >
-            <div className="absolute inset-0 bg-CustomColor4 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl md:block hidden"></div>
+            <div className="absolute inset-0 bg-CustomColor4 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl md:block hidden "></div>
             <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
-              <div className="max-w-md mx-auto">
+              <div className="max-w-md mx-auto ">
                 <div className="flex justify-center items-center">
                   <h1 className="text-3xl font-semibold ">
                     Sign in to account
@@ -103,7 +98,7 @@ const Index = () => {
                     </div>
                     <div className="flex flex-col justify-center items-center gap-5 pt-5">
                       <button
-                        className="bg-gray-900 text-white rounded-md px-4 py-1 font-normal hover:bg-gray-300 hover:text-gray-900 transition-all  "
+                        className="bg-gray-900 text-base font-semibold  text-white rounded px-4 py-2 w-3/4  hover:bg-gray-300 hover:text-gray-900 transition-all  "
                         type="submit"
                       >
                         Submit
