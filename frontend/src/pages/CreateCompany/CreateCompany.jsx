@@ -45,7 +45,7 @@ const CreateCompany = () => {
                 phone('')
                 ManagerId('')
                 console.log(data);
-                history.push("/login");
+                history.push("/");
             })
             .catch((error) => {
                 // Handle the error
