@@ -16,7 +16,7 @@ const Stock = () => {
                     <div>
                         <h2 class="text-gray-800 text-3xl font-semibold">Store</h2>
                         <p class="mt-2 text-gray-600">Manage your inventory, categorize products, track sales and more</p>
-                        <button class="mt-4 bg-cyan-600 text-white px-2 py-2 rounded inline-flex items-center">Navigate</button>
+                        <button class="mt-4 bg-cyan-600 text-white px-2 py-2 rounded inline-flex items-center">Visit</button>
                     </div>
                 </div>
                 <div class="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg">
@@ -26,7 +26,7 @@ const Stock = () => {
                     <div>
                         <h2 class="text-gray-800 text-3xl font-semibold">Shop</h2>
                         <p class="mt-2 text-gray-600">Your personal digital storefront to sell products directly to customers</p>
-                        <button class="mt-4 bg-cyan-600 text-white px-2 py-2 rounded inline-flex items-center">Navigate</button>
+                        <button class="mt-4 bg-cyan-600 text-white px-2 py-2 rounded inline-flex items-center">Visit</button>
                     </div>
                 </div>
                 <div class="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg">
@@ -36,7 +36,7 @@ const Stock = () => {
                     <div>
                         <h2 class="text-gray-800 text-3xl font-semibold">Van</h2>
                         <p class="mt-2 text-gray-600">Track deliveries and manage logistics for your business operations</p>
-                        <button class="mt-4  text-white px-2 py-2 rounded inline-flex items-center bg-cyan-600">Navigate</button>
+                        <button class="mt-4  text-white px-2 py-2 rounded inline-flex items-center bg-cyan-600">Visit</button>
                     </div>
                 </div>
             </div>
