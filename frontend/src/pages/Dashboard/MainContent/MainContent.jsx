@@ -11,8 +11,8 @@ const MainContent = () => {
             <Routes>
                 <Route index element={<MainDashboard />} />
                 <Route path="stock" element={<Stock />} />
-                <Route path="items" element={<Items />} />
-                <Route path="additem" element={<Additem />} />
+                <Route path="Stock/Items" element={<Items />} />
+                <Route path="Stock/Items/addItems" element={<Additem />} />
             </Routes>
         </main>
 
