@@ -23,10 +23,14 @@ const Additem = () => {
     const [final_good, setFinalGood] = useState(false);
     const [change_inv_acc, setChangeInvAcc] = useState(false);
     const [inventory_account, setInventoryAccount] = useState("");
+    const [image, setimage] = useState("");
 
     const manager = localStorage.getItem("userId");
     console.log("manager", manager);
 
+    const setFile = (event) => {
+        setimage(URL.createObjectURL(event.target.files[0]));
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -50,7 +54,9 @@ const Additem = () => {
             final_good,
             change_inv_acc,
             inventory_account,
-            manager
+            manager,
+            image
+
         };
 
         try {
@@ -88,17 +94,17 @@ const Additem = () => {
                     <div className="FirstHalf">
                         <div className="md:flex -mx-3 mb-2">
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">SupCode</label>
+                                <label className="mb-2">Supplier Code</label>
                                 <input className="border-2 p-2" type="text" placeholder="SupCode (optional)" value={supcode} onChange={e => setSupCode(e.target.value)} />
                             </div>
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">Code</label>
+                                <label className="mb-2">Internal Item Code</label>
                                 <input className="border-2 p-2" type="text" placeholder="Code (optional)" value={code} onChange={e => setCode(e.target.value)} />
                             </div>
                         </div>
                         <div className="md:flex -mx-3 mb-2">
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">Name</label>
+                                <label className="mb-2">Item Name</label>
                                 <input className="border-2 p-2" type="text" placeholder="Name (optional)" value={name} onChange={e => setName(e.target.value)} />
                             </div>
                             <div className="flex flex-col m-4">
@@ -112,17 +118,17 @@ const Additem = () => {
                         </div>
                         <div className="md:flex -mx-3 mb-2">
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">Quantity</label>
+                                <label className="mb-2">Quantity Available</label>
                                 <input className="border-2 p-2" type="text" placeholder="Quantity (optional)" value={quantity} onChange={e => setQuantity(e.target.value)} />
                             </div>
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">Total</label>
+                                <label className="mb-2">HT Total</label>
                                 <input className="border-2 p-2" type="text" placeholder="Total (optional)" value={total} onChange={e => setTotal(e.target.value)} />
                             </div>
                         </div>
                         <div className="md:flex -mx-3 mb-2">
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">TVA (true/false)</label>
+                                <label className="mb-2">Include TVA</label>
                                 <input className="border-2 p-2" type="checkbox" checked={TVA} onChange={e => setTva(!TVA)} />
                             </div>
                             <div className="flex flex-col m-4">
@@ -132,21 +138,21 @@ const Additem = () => {
                         </div>
                         <div className="md:flex -mx-3 mb-2">
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">TTC Value</label>
+                                <label className="mb-2">Item Price</label>
                                 <input className="border-2 p-2" type="text" placeholder="TTC Value (optional)" value={TTC} onChange={e => setTtc(e.target.value)} />
                             </div>
                             <div className="flex flex-col m-4">
                                 <label className="mb-2">Place</label>
-                                <input className="border-2 p-2" type="text" placeholder="place (optional)" value={place} onChange={e => setPlace(e.target.value)} />
+                                <input className="border-2 p-2" type="textarea" placeholder="place (optional)" value={place} onChange={e => setPlace(e.target.value)} />
                             </div>
                         </div>
                         <div className="md:flex -mx-3 mb-2">
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">Value Cost</label>
+                                <label className="mb-2">Item Cost</label>
                                 <input className="border-2 p-2" type="text" placeholder="Value Cost (optional)" value={addValueCost} onChange={e => setAddValueCost(e.target.value)} />
                             </div>
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">Unit Price</label>
+                                <label className="mb-2">Middle Price</label>
                                 <input className="border-2 p-2" type="number" placeholder="Unit Price (optional)" value={unit_price} onChange={e => setUnitPrice(e.target.value)} />
                             </div>
                         </div>
@@ -159,18 +165,18 @@ const Additem = () => {
                             </div>
 
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">Revenue</label>
+                                <label className="mb-2">Revenue Account</label>
                                 <input className="border-2 p-2" type="number" placeholder="Revenue (optional)" value={revenue} onChange={e => setRevenue(e.target.value)} />
                             </div>
                         </div>
                         <div className="md:flex -mx-3 mb-2">
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">Purchase</label>
+                                <label className="mb-2">Purchase Account</label>
                                 <input className="border-2 p-2" type="number" placeholder="Purchase (optional)" value={purchase} onChange={e => setPurchase(e.target.value)} />
                             </div>
 
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">Expense</label>
+                                <label className="mb-2">Expense Account</label>
                                 <input className="border-2 p-2" type="number" placeholder="Expense (optional)" value={expense} onChange={e => setExpense(e.target.value)} />
                             </div>
                         </div>
@@ -192,6 +198,10 @@ const Additem = () => {
                                 <option value="Unit1">A</option>
                                 <option value="Unit2">B</option>
                             </select>
+                        </div>
+                        <div className="flex flex-col m-4">
+                            <label className="mb-2">Upload Image</label>
+                            <input className="border-2 p-2" type="file" onChange={setFile} />
                         </div>
                     </div>
                 </div>
