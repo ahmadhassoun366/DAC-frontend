@@ -1,19 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import 'tailwindcss/tailwind.css';
+import React, { useState, useEffect } from "react";
+import "tailwindcss/tailwind.css";
 
-const ItemCard = ({ itemDetails }) => {
-    return (
-        <div className="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl m-3">
-            <div className="md:flex">
-                <div className="md:flex-shrink-0">
-                    <img className="h-48 w-full object-cover md:w-48" src={itemDetails.image} alt={itemDetails.title} />
-                </div>
-                <div className="p-8">
-                    <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">{itemDetails.title}</div>
-                    <p className="mt-2 text-gray-500">{itemDetails.description}</p>
-                </div>
-            </div>
-        </div>
-    );
+const ItemCard = ({ itemDetails, onDelete, onUpdate }) => {
+  return (
+    <tr className="hover:bg-gray-100">
+      <td className="border px-4 py-2">{itemDetails.supcode}</td>
+      <td className="border px-4 py-2">{itemDetails.code}</td>
+      <td className="border px-4 py-2">{itemDetails.name}</td>
+      <td className="border px-4 py-2">{itemDetails.unit}</td>
+      <td className="border px-4 py-2">{itemDetails.quantity}</td>
+      <td className="border px-4 py-2">{itemDetails.total}</td>
+
+      <td className="border px-4 py-2">
+        <button
+          className="bg-blue-500 text-white px-2 py-1 rounded mr-1"
+          onClick={() => onUpdate(itemDetails.id)}
+        >
+          Update
+        </button>
+        <button
+          className="bg-red-500 text-white px-2 py-1 rounded"
+          onClick={() => onDelete(itemDetails.id)}
+        >
+          Delete
+        </button>
+      </td>
+    </tr>
+  );
 };
 export default ItemCard;

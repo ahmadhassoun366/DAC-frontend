@@ -12,46 +12,34 @@ const Items = () => {
 
   const manager = localStorage.getItem("userId");
   console.log("manager", manager);
-  const itemId = 1;
 
   useEffect(() => {
-    getItems();
-  }, []);
-
-  let getItems = async () => {
-    try {
-      let response = await fetch(`http://127.0.0.1:8000/api/item/${itemId}`, {
-        method: "GET",
+    fetch(`http://127.0.0.1:8000/api/item/${manager}/`) // replace with your API endpoint
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setItems(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
       });
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error, status = ${response.status}`);
-      }
-  
-      let data = await response.json();
-      setItems(data);
-    } catch (error) {
-      console.error(error);
-      // Set error state here if you have one
-    }
+  }, []); // Empty dependency array means this useEffect runs once when component mounts
+
+  const handleDelete = (id) => {
+    // Implement your delete logic here
+    console.log(`Deleting item with id: ${id}`);
   };
 
-//   useEffect(() => {
-//     fetch(`http://127.0.0.1:8000/api/item/${itemId}`)
-//       .then((response) => {
-//         if (!response.ok) throw new Error(`Status code: ${response.status}`);
-//         return response.json();
-//       })
-//       .then((data) => {
-//         setItems(data);
-//         setLoading(false);
-//       })
-//       .catch((error) => {
-//         console.error(`Fetch error: ${error}`);
-//         setError(error);
-//         setLoading(false);
-//       });
-//   }, []);
+  const handleUpdate = (id) => {
+    // Implement your update logic here
+    console.log(`Updating item with id: ${id}`);
+  };
 
   console.log("items", items);
   if (loading) {
@@ -64,16 +52,39 @@ const Items = () => {
 
   return (
     <>
-      <Link
-        to="./addItems"
-        className="mt-4 bg-cyan-600 text-white px-2 py-2 rounded inline-flex items-center"
-      >
-        Add Items
-      </Link>
-      <div className="container mx-auto">
-        {items.map((item) => (
-          <ItemCard key={item.id} itemDetails={item} />
-        ))}
+      <div className="flex justify-end">
+        <Link
+          to="./addItems"
+          className="mt-4 bg-cyan-600 text-white px-2 py-2 rounded inline-flex items-center"
+        >
+          + Add Items
+        </Link>
+      </div>
+
+      <div className="container mx-auto mt-4">
+        <table className="min-w-full bg-white border">
+          <thead>
+            <tr>
+              <th className="border px-4 py-2">Supcode</th>
+              <th className="border px-4 py-2">Code</th>
+              <th className="border px-4 py-2">Name</th>
+              <th className="border px-4 py-2">Name</th>
+              <th className="border px-4 py-2">Name</th>
+              {/* Add more column headers as needed */}
+              <th className="border px-4 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {items.map((item) => (
+              <ItemCard
+                key={item.id}
+                itemDetails={item}
+                onDelete={handleDelete}
+                onUpdate={handleUpdate}
+              />
+            ))}
+          </tbody>
+        </table>
       </div>
     </>
   );
