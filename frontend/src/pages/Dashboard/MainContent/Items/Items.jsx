@@ -4,7 +4,7 @@ import ItemCard from "./ItemCard";
 import p1 from "../../../../Assets/p1.jpg";
 import p2 from "../../../../Assets/p2.jpg";
 
-const Items = () => {
+const Items = (props) => {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
@@ -40,7 +40,28 @@ const Items = () => {
     // Implement your update logic here
     console.log(`Updating item with id: ${id}`);
   };
-
+  const handleClick = (id) => {
+    console.log(`clicking item with id: ${id}`);
+    fetch(`http://127.0.0.1:8000/api/item/details/${id}/`) // replace with your API endpoint
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        props.setcurrentitem(data[0]);
+        console.log("data !", data[0]);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+        setLoading(false);
+      });
+    navigate("itemdetails");
+    console.log(" props.setcurrentitem(data[0]);", props.currentitem)
+  };
+  // http://127.0.0.1:8000/api/item/details/2/
   console.log("items", items);
   if (loading) {
     return <div>Loading...</div>;
@@ -81,6 +102,7 @@ const Items = () => {
                 itemDetails={item}
                 onDelete={handleDelete}
                 onUpdate={handleUpdate}
+                onView={handleClick}
               />
             ))}
           </tbody>

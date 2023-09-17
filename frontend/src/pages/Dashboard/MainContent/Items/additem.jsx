@@ -23,6 +23,7 @@ const Additem = () => {
     const [final_good, setFinalGood] = useState(false);
     const [change_inv_acc, setChangeInvAcc] = useState(false);
     const [inventory_account, setInventoryAccount] = useState("");
+    const [image, setImage] = useState(null);
 
     const manager = localStorage.getItem("userId");
     console.log("manager", manager);
@@ -50,7 +51,8 @@ const Additem = () => {
             final_good,
             change_inv_acc,
             inventory_account,
-            manager
+            manager,
+            image
         };
 
         try {
@@ -192,6 +194,14 @@ const Additem = () => {
                                 <option value="Unit1">A</option>
                                 <option value="Unit2">B</option>
                             </select>
+                        </div>
+                        <div className="flex flex-col mb-4">
+                            <label className="mb-2">Item Image</label>
+                            <input
+                                className="border-2 p-2"
+                                type="file"
+                                onChange={e => setImage(e.target.files[0])}
+                            />
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "tailwindcss/tailwind.css";
 
-const ItemCard = ({ itemDetails, onDelete, onUpdate }) => {
+const ItemCard = ({ itemDetails, onDelete, onUpdate, onView }) => {
   return (
-    <tr className="hover:bg-gray-100">
+    <tr className="hover:bg-gray-100" >
       <td className="border px-4 py-2">{itemDetails.supcode}</td>
       <td className="border px-4 py-2">{itemDetails.code}</td>
       <td className="border px-4 py-2">{itemDetails.name}</td>
@@ -13,6 +13,12 @@ const ItemCard = ({ itemDetails, onDelete, onUpdate }) => {
 
       <td className="border px-4 py-2">
         <button
+          className="bg-gray-500 text-white px-10 py-1 rounded mr-1"
+          onClick={() => onView(itemDetails.id)}
+        >
+          View
+        </button>
+        {/* <button
           className="bg-blue-500 text-white px-2 py-1 rounded mr-1"
           onClick={() => onUpdate(itemDetails.id)}
         >
@@ -23,7 +29,7 @@ const ItemCard = ({ itemDetails, onDelete, onUpdate }) => {
           onClick={() => onDelete(itemDetails.id)}
         >
           Delete
-        </button>
+        </button> */}
       </td>
     </tr>
   );
