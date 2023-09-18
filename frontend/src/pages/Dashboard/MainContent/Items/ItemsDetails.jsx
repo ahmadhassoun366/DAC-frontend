@@ -2,12 +2,33 @@ import React, { useState, useEffect } from 'react';
 
 const ItemsDetails = ({ item, onEdit, onDelete }) => {
     const [isEditing, setisEditing] = useState(false);
+    const [items, setItems] = useState([]);
     const UpdateDetails = (item) => {
         setisEditing(true);
         onEdit(item);
     }
 
-
+    const handleDelete = (id) => {
+        // Start deletion process, you may want to set some loading state here
+        console.log(`Deleting item with id: ${id}`);
+      
+        // Make a DELETE request to your API endpoint
+        fetch(`http://127.0.0.1:8000/api/item/${id}/delete`, {
+          method: 'DELETE',
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            // You may want to remove the item from the local state here
+            setItems(items.filter((item) => item.id !== id));
+          })
+          .catch((error) => {
+            // Handle errors
+            console.error(`There was a problem with the delete request: ${error}`);
+          });
+      };
+    
 
     const details = [
         { id: 1, label: 'Supcode', value: item.supcode },
@@ -83,7 +104,7 @@ const ItemsDetails = ({ item, onEdit, onDelete }) => {
                                 Edit
                             </button>
                         }
-                        <button onClick={() => onDelete(item)} className="mr-4 bg-black hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                        <button onClick={() => handleDelete(item.id)} className="mr-4 bg-black hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
                             Delete
                         </button>
                     </div>
