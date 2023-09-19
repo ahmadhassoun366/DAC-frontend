@@ -11,12 +11,12 @@ const ItemCard = ({ itemDetails, onDelete, onUpdate, onView }) => {
       <td className="border px-4 py-2">{itemDetails.quantity}</td>
       <td className="border px-4 py-2">{itemDetails.total}</td>
 
-      <td className="border px-4 py-2">
+      <td className="border px-4 py-2 flex justify-center items-center">
         <button
-          className="bg-gray-500 text-white px-10 py-1 rounded mr-1"
+          className="bg-gray-900 text-white px-5 py-1 rounded mr-1"
           onClick={() => onView(itemDetails.id)}
         >
-          View
+          More Detials
         </button>
         {/* <button
           className="bg-blue-500 text-white px-2 py-1 rounded mr-1"

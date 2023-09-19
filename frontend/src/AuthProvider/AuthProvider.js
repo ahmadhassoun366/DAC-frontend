@@ -62,7 +62,7 @@ const AuthProvider = ({ children }) => {
           console.log("manager Logged In Successfully");
           setSeekerId(managerResponse.data[0].id);
           localStorage.setItem("seekerId", managerResponse.data[0].id);
-          toast.success("Successfully LoggedIn!"); 
+          toast.success("Successfully LoggedIn!");
           navigate("/dashboard");
         }
       }
