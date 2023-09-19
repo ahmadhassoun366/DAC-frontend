@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import MainDashboard from "./MainDashboard/MainDashboard";
 import Stock from "./Stock/Stock";
@@ -12,6 +12,25 @@ const MainContent = () => {
 
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const managerID = localStorage.getItem("userId");
+    console.log("manager", managerID);
+    useEffect(() => {
+        fetch(`http://127.0.0.1:8000/api/management/${managerID}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                alert("done", data);
+                setLoading(true);
+            })
+            .catch((error) => {
+                setError(error);
+                setLoading(false);
+            });
+    }, []);
     const onEdit = () => {
         // alert("edit");
     }
@@ -41,7 +60,6 @@ const MainContent = () => {
         return <div>Error: {error.message}</div>;
     }
     console.log("sssssssscurrentitem", currentitem);
-
     return (
         <main>
             <Routes>
