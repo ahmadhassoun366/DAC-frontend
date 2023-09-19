@@ -23,14 +23,56 @@ const Additem = () => {
     const [change_inv_acc, setChangeInvAcc] = useState(false);
     const [inventory_account, setInventoryAccount] = useState("");
     const [image, setImage] = useState(null);
-
+    const [minimum_quantity, setMquentity] = useState("");
     const manager = localStorage.getItem("userId");
     console.log("manager", manager);
 
+    // http://127.0.0.1:8000/api/management/${id} revenue purchase  & expense 
+    // http://127.0.0.1:8000/api/accounting/${id}
+    useEffect = () => {
+        fetch(`http://127.0.0.1:8000/api/management/${manager}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log("data !!!!!!", data[0].TVA);
+                setTvaValue(data[0].TVA)
+            })
+            .catch((error) => {
+                alert(error);
+
+            });
+
+        fetch(`http://127.0.0.1:8000/api/accounting/${manager}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error("Network response was not ok");
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log("data !???", data[0]);
+                setExpense(data[0].expense);
+                setRevenue(data[0].revenue);
+                setPurchase(data[0].purchase)
+
+            })
+            .catch((error) => {
+                alert(error);
+
+            });
+    }
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const itemdata = {
+
+            TVA_value,
+
+
             supcode,
             code,
             name,
@@ -38,7 +80,6 @@ const Additem = () => {
             quantity,
             total,
             TVA,
-            TVA_value,
             TTC,
             place,
             addValueCost,
@@ -51,7 +92,8 @@ const Additem = () => {
             change_inv_acc,
             inventory_account,
             manager,
-            image
+            image,
+            minimum_quantity
         };
 
         try {
@@ -128,7 +170,7 @@ const Additem = () => {
                             </div>
                             <div className="flex flex-col m-4">
                                 <label className="mb-2">TVA Value</label>
-                                <input className="border-2 p-2" type="text" placeholder="TVA Value (optional)" value={TVA_value} onChange={e => setTvaValue(e.target.value)} />
+                                <select className="border-2 p-2" type="dropdown" placeholder="TVA Value (optional)" onChange={e => setTvaValue(e.target.value)}><option>{TVA_value}</option></select>
                             </div>
                         </div>
                         <div className="md:flex -mx-3 mb-2">
@@ -200,6 +242,14 @@ const Additem = () => {
                                 className="border-2 p-2"
                                 type="file"
                                 onChange={e => setImage(e.target.files[0])}
+                            />
+                        </div>
+                        <div className="flex flex-col mb-4">
+                            <label className="mb-2">Minimum Quentity</label>
+                            <input
+                                className="border-2 p-2"
+                                type="text"
+                                onChange={e => setMquentity(e.target.value)}
                             />
                         </div>
                     </div>
