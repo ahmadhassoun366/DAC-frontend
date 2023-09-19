@@ -59,7 +59,7 @@ const Items = (props) => {
         setLoading(false);
       });
     navigate("itemdetails");
-    console.log(" props.setcurrentitem(data[0]);", props.currentitem)
+    console.log(" props.setcurrentitem(data[0]);", props.currentitem);
   };
   // http://127.0.0.1:8000/api/item/details/2/
   console.log("items", items);
@@ -72,25 +72,27 @@ const Items = (props) => {
   }
 
   return (
-    <>
-      <div className="flex justify-end">
+    <div className="mt-10">
+      <div className="flex justify-end items-center mr-10">
         <Link
           to="./addItems"
-          className="mt-4 bg-cyan-600 text-white px-2 py-2 rounded inline-flex items-center"
+          className="mt-4 bg-gray-900 text-white px-2 py-2 rounded inline-flex items-center"
         >
           + Add Items
         </Link>
       </div>
 
-      <div className="container mx-auto mt-4">
-        <table className="min-w-full bg-white border">
+      <div className="mx-10 mt-4 mr-10 ">
+        <table className="w-full bg-white border rounded-lg shadow-lg">
           <thead>
             <tr>
               <th className="border px-4 py-2">Supcode</th>
               <th className="border px-4 py-2">Code</th>
               <th className="border px-4 py-2">Name</th>
-              <th className="border px-4 py-2">Name</th>
-              <th className="border px-4 py-2">Name</th>
+              <th className="border px-4 py-2">Unit</th>
+              <th className="border px-4 py-2">Quantity</th>
+              <th className="border px-4 py-2">Total</th>
+
               {/* Add more column headers as needed */}
               <th className="border px-4 py-2">Actions</th>
             </tr>
@@ -108,7 +110,7 @@ const Items = (props) => {
           </tbody>
         </table>
       </div>
-    </>
+    </div>
   );
 };
 
