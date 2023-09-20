@@ -6,7 +6,8 @@ import Additem from "./Items/additem";
 import Items from "./Items/Items";
 import ItemsDetails from "./Items/ItemsDetails";
 import Accounting from "./Accounting/Accounting";
-
+import Units from "./Accounting/Units/Units";
+import Addunit from "./Accounting/Units/Addunit";
 const MainContent = () => {
   const [currentitem, setcurrentitem] = useState({ supcode: "a1111" });
   const [itemID, setitemID] = useState(null);
@@ -31,6 +32,8 @@ const MainContent = () => {
         <Route index element={<MainDashboard />} />
         <Route path="stock" element={<Stock />} />
         <Route path="accounting" element={<Accounting />} />
+        <Route path="accounting/units" element={<Units />} />
+        <Route path="accounting/units/addunit" element={<Addunit />} />
         <Route
           path="Stock/Items"
           element={
