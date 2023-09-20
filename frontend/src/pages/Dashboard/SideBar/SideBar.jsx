@@ -159,8 +159,8 @@ const SideBar = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/dashboard/accounting"
                   class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                 >
                   <svg
@@ -172,7 +172,7 @@ const SideBar = () => {
                     <path d="M4 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v1H3V3a1 1 0 0 1 1-1zm1 3v1h1V5H5zm3 0v1h1V5H8zm3 0v1h1V5h-1zm-6 3v1h1V8H5zm3 0v1h1V8H8zm3 0v1h1V8h-1zm-6 3v1h1v-1H5zm3 0v1h1v-1H8zm3 0v1h1v-1h-1z" />
                   </svg>
                   <span class="ml-3 flex-1 whitespace-nowrap">Accounting</span>
-                </a>
+                </Link>
               </li>
             </ul>
             <div class="space-y-2 pt-2">
