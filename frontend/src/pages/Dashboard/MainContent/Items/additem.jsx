@@ -10,7 +10,7 @@ const Additem = () => {
     const [quantity, setQuantity] = useState("");
     const [total, setTotal] = useState("");
     const [TVA, setTva] = useState(false);
-    const [TVA_value, setTvaValue] = useState("");
+    // const [TVA_value, setTvaValue] = useState("");
     const [TTC, setTtc] = useState("");
     const [place, setPlace] = useState("");
     const [addValueCost, setAddValueCost] = useState("");
@@ -19,7 +19,7 @@ const Additem = () => {
     const [revenue, setRevenue] = useState("");
     const [purchase, setPurchase] = useState("");
     const [expense, setExpense] = useState("");
-    const [final_good, setFinalGood] = useState(false);
+    const [final_good, setFinalGood] = useState("");
     const [change_inv_acc, setChangeInvAcc] = useState(false);
     const [inventory_account, setInventoryAccount] = useState("");
     const [image, setImage] = useState(null);
@@ -29,50 +29,46 @@ const Additem = () => {
 
     // http://127.0.0.1:8000/api/management/${id} revenue purchase  & expense 
     // http://127.0.0.1:8000/api/accounting/${id}
-    useEffect = () => {
-        fetch(`http://127.0.0.1:8000/api/management/${manager}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log("data !!!!!!", data[0].TVA);
-                setTvaValue(data[0].TVA)
-            })
-            .catch((error) => {
-                alert(error);
+    // useEffect = () => {
+    //     fetch(`http://127.0.0.1:8000/api/management/${manager}`)
+    //         .then((response) => {
+    //             if (!response.ok) {
+    //                 throw new Error("Network response was not ok");
+    //             }
+    //             return response.json();
+    //         })
+    //         .then((data) => {
+    //             console.log("data !!!!!!", data[0].TVA);
+    //             setTvaValue(data[0].TVA)
+    //         })
+    //         .catch((error) => {
+    //             alert(error);
 
-            });
+    //         });
 
-        fetch(`http://127.0.0.1:8000/api/accounting/${manager}`)
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error("Network response was not ok");
-                }
-                return response.json();
-            })
-            .then((data) => {
-                console.log("data !???", data[0]);
-                setExpense(data[0].expense);
-                setRevenue(data[0].revenue);
-                setPurchase(data[0].purchase)
+    //     fetch(`http://127.0.0.1:8000/api/accounting/${manager}`)
+    //         .then((response) => {
+    //             if (!response.ok) {
+    //                 throw new Error("Network response was not ok");
+    //             }
+    //             return response.json();
+    //         })
+    //         .then((data) => {
+    //             console.log("data !???", data[0]);
+    //             setExpense(data[0].expense);
+    //             setRevenue(data[0].revenue);
+    //             setPurchase(data[0].purchase)
 
-            })
-            .catch((error) => {
-                alert(error);
+    //         })
+    //         .catch((error) => {
+    //             alert(error);
 
-            });
-    }
+    //         });
+    // }
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const itemdata = {
-
-            TVA_value,
-
-
             supcode,
             code,
             name,
@@ -164,13 +160,21 @@ const Additem = () => {
                             </div>
                         </div>
                         <div className="md:flex -mx-3 mb-2">
-                            <div className="flex flex-col m-4">
+                            {/* <div className="flex flex-col m-4">
                                 <label className="mb-2">TVA (true/false)</label>
                                 <input className="border-2 p-2" type="checkbox" checked={TVA} onChange={e => setTva(!TVA)} />
-                            </div>
+                            </div> */}
                             <div className="flex flex-col m-4">
-                                <label className="mb-2">TVA Value</label>
-                                <select className="border-2 p-2" type="dropdown" placeholder="TVA Value (optional)" onChange={e => setTvaValue(e.target.value)}><option>{TVA_value}</option></select>
+                                <label className="mb-2">TVA</label>
+
+                                <select className="border-2 p-2" type="dropdown" placeholder="TVA (optional)" onChange={e => setTva(e.target.value)}>
+                                    <option>1%</option>
+                                    <option>2%</option>
+                                    <option>3%</option>
+                                    <option>4%</option>
+                                    <option>5%</option>
+                                    <option>6%</option>
+                                </select>
                             </div>
                         </div>
                         <div className="md:flex -mx-3 mb-2">
@@ -220,7 +224,11 @@ const Additem = () => {
                         <div className="md:flex -mx-3 mb-2">
                             <div className="flex flex-col m-4">
                                 <label className="mb-2">Final Good</label>
-                                <input className="border-2 p-2" type="checkbox" checked={final_good} onChange={e => setFinalGood(!final_good)} />
+                                <select className="border-2 p-2" type="dropdown" placeholder="final good" onChange={e => setFinalGood(e.target.value)}>
+                                    <option>Mid</option>
+                                    <option>Start</option>
+                                    <option>Finished</option>
+                                </select>
                             </div>
 
                             <div className="flex flex-col m-4">
