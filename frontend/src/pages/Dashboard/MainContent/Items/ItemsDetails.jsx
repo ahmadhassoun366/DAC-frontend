@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ItemsDetails = ({ item, onEdit, onDelete }) => {
     const [isEditing, setisEditing] = useState(false);
@@ -7,7 +8,8 @@ const ItemsDetails = ({ item, onEdit, onDelete }) => {
         setisEditing(true);
         onEdit(item);
     }
-
+    const history = useNavigate();
+  
     const handleDelete = (id) => {
         // Start deletion process, you may want to set some loading state here
         console.log(`Deleting item with id: ${id}`);
@@ -22,6 +24,7 @@ const ItemsDetails = ({ item, onEdit, onDelete }) => {
             }
             // You may want to remove the item from the local state here
             setItems(items.filter((item) => item.id !== id));
+            history('/dashboard/stock/items');
           })
           .catch((error) => {
             // Handle errors
