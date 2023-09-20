@@ -72,14 +72,14 @@ const Addunit = () => {
 
                     <button
                         type="submit"
-                        className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300"
+                        className="w-full bg-black text-white py-2 px-4 rounded-lg hover:bg-cyan-700 transition duration-300"
                     >
                         Add Unit
                     </button>
                 </form>
 
                 <div className="mt-4 text-center">
-                    <Link to="/dashboard/accounting/units" className="text-blue-500 hover:underline">
+                    <Link to="/dashboard/accounting/units" className="text-black-500 hover:underline">
                         Back to Units
                     </Link>
                 </div>

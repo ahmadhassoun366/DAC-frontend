@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import van from "../../../../Assets/van.png";
+import money from "../../../../Assets/save-money.png";
 
 
 const Accounting = () => {
@@ -9,7 +9,7 @@ const Accounting = () => {
             <div class="flex justify-around p-10 gap-8">
                 <div class="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg">
                     <div class="flex justify-center md:justify-end -mt-16">
-                        <img class="w-20 h-20 object-cover rounded-full border-2 border-indigo-500" src={van} alt="" />
+                        <img class="w-20 h-20 object-cover rounded-full border-2 border-indigo-500" src={money} alt="" />
                     </div>
                     <div>
                         <h2 class="text-gray-800 text-3xl font-semibold">Units</h2>
