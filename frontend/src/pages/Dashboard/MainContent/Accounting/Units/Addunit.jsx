@@ -1,23 +1,26 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-const Addunit = () => {
+const Addunit = (props) => {
     // State for form fields
     const [unitName, setUnitName] = useState("");
-    const [description, setDescription] = useState("");
+    const [symbol, setSymbol] = useState("");
     const [subUnit, setSubUnit] = useState("");
+    const [operation, setOperation] = useState("");
+    const [amount, setAmount] = useState(""); // New state for Amount
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
+
         // Construct the payload
         const payload = {
             name: unitName,
-            unit_symbol: description, 
-            sub_unit: subUnit
+            unit_symbol: symbol,
+            sub_unit: subUnit,
+            operation,
+            amount, // Include Amount in the payload
         };
-        
-    
+
         try {
             // Make a POST request to your API endpoint
             const response = await fetch('http://127.0.0.1:8000/api/unit/add', {
@@ -27,7 +30,7 @@ const Addunit = () => {
                 },
                 body: JSON.stringify(payload)
             });
-    
+
             if (response.ok) {
                 const data = await response.json();
                 console.log("Success:", data);
@@ -39,7 +42,7 @@ const Addunit = () => {
             console.error("There was an error submitting the form", error);
         }
     };
-    
+
 
     return (
         <div className="py-6 px-4">
@@ -61,21 +64,55 @@ const Addunit = () => {
                             required
                         />
                     </div>
-
-                    {/* Description */}
+                    {/* Amount */}
                     <div className="mb-4">
-                        <label htmlFor="description" className="block text-gray-700 font-medium mb-2">
-                            Description
+                        <label htmlFor="amount" className="block text-gray-700 font-medium mb-2">
+                            Amount
                         </label>
-                        <textarea
-                            id="description"
+                        <input
+                            type="number"
+                            id="amount"
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-400"
-                            rows="4"
-                            placeholder="Enter description"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder="Enter amount"
+                            value={amount}
+                            onChange={(e) => setAmount(e.target.value)}
                             required
-                        ></textarea>
+                        />
+                    </div>
+                    {/* Operation */}
+                    <div className="mb-4">
+                        <label htmlFor="operation" className="block text-gray-700 font-medium mb-2">
+                            Operation
+                        </label>
+                        <select
+                            id="operation"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-400"
+                            value={operation}
+                            onChange={(e) => setOperation(e.target.value)}
+                            required
+                        >
+                            <option value="" disabled>Select operation</option>
+                            <option value="+">Addition (+)</option>
+                            <option value="-">Subtraction (-)</option>
+                            <option value="*">Multiplication (*)</option>
+                            <option value="/">Division (/)</option>
+                            {/* Add more options as needed */}
+                        </select>
+                    </div>
+                    {/* Symbol */}
+                    <div className="mb-4">
+                        <label htmlFor="symbol" className="block text-gray-700 font-medium mb-2">
+                            Symbol
+                        </label>
+                        <input
+                            type="text"
+                            id="symbol"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-400"
+                            placeholder="Enter symbol"
+                            value={symbol}
+                            onChange={(e) => setSymbol(e.target.value)}
+                            required
+                        />
                     </div>
 
                     {/* Sub Unit */}
@@ -106,9 +143,12 @@ const Addunit = () => {
                 </form>
 
                 <div className="mt-4 text-center">
-                    <Link to="/dashboard/accounting/units" className="text-black-500 hover:underline">
-                        Back to Units
-                    </Link>
+                    <button
+                        // to="/dashboard/accounting/units"
+                        onClick={() => props.closeModal()}
+                        className="text-black-500 hover:underline">
+                        cancel
+                    </button>
                 </div>
             </div>
         </div>

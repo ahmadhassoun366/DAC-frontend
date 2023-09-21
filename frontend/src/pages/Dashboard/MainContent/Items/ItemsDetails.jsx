@@ -106,7 +106,7 @@ const ItemsDetails = ({ item, onEdit, onDelete }) => {
 
         <div className="w-full max-w-full mx-auto bg-white shadow-lg rounded-lg overflow-hidden md:flex md:items-stretch md:h-auto">
             <div className="md:flex-shrink-0 md:w-48 md:h-full md:flex md:items-center md:justify-center p-8">
-                <img className="rounded-full w-full h-full object-cover" alt={item.id} />
+                <img className="rounded-full w-full h-full object-cover" src={item.image} alt={item.id} />
             </div>
 
             <div className="flex-1 px-6 py-4 md:px-12">
