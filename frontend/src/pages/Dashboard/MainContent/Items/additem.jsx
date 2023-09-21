@@ -69,7 +69,7 @@ const Additem = () => {
       );
       console.log("tva", tva);
       console.log("Data from server", response.data);
-
+      history('/dashboard/stock/items')
       // Reset form fields or navigate to another page
     } catch (error) {
       console.error("There was a problem with the POST operation:", error);
