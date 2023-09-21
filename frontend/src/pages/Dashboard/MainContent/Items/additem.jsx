@@ -31,49 +31,44 @@ const Additem = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const itemdata = {
-      supcode,
-      code,
-      name,
-      unit,
-      quantity,
-      total,
-      tva,
-      ttc,
-      place,
-      addValueCost,
-      unit_price,
-      cost,
-      revenue,
-      purchase,
-      expense,
-      final_good,
-      change_inv_acc,
-      inventory_account,
-      manager,
-      image,
-      minimum_quantity,
-    };
+    const formData = new FormData();
+    formData.append("supcode", supcode);
+    formData.append("code", code);
+    formData.append("name", name);
+    formData.append("unit", unit);
+    formData.append("quantity", quantity);
+    formData.append("total", total);
+    formData.append("tva", tva);
+    formData.append("ttc", ttc);
+    formData.append("place", place);
+    formData.append("addValueCost", addValueCost);
+    formData.append("unit_price", unit_price);
+    formData.append("cost", cost);
+    formData.append("revenue", revenue);
+    formData.append("purchase", purchase);
+    formData.append("expense", expense);
+    formData.append("final_good", final_good);
+    formData.append("change_inv_acc", change_inv_acc);
+    formData.append("inventory_account", inventory_account);
+    formData.append("manager", manager);
+    formData.append("image", image);
+    formData.append("minimum_quantity", minimum_quantity);
+    
 
     try {
-      console.log(tva);
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/item/add",
-        itemdata,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            // Add other headers if necessary
-          },
-        }
-      );
-      console.log("tva", tva);
-      console.log("Data from server", response.data);
-      history('/dashboard/stock/items')
-      // Reset form fields or navigate to another page
+      const response = await fetch("http://127.0.0.1:8000/api/item/add", {
+        method: 'POST',
+        body: formData,
+      });
+  
+      const data = await response.json();
+  
+      // handle the response as needed
+      console.log(data);
     } catch (error) {
-      console.error("There was a problem with the POST operation:", error);
+      console.error("Error uploading the data", error);
     }
+  
   };
 
   useEffect(() => {
@@ -82,7 +77,7 @@ const Additem = () => {
 
   return (
     <div className="flex flex-col max-w-none mx-auto">
-      <form className="m-10" onSubmit={handleSubmit}>
+      <form className="m-10" onSubmit={handleSubmit} enctype="multipart/form-data">
         <div className="flex">
           <div className="FirstHalf">
             <div className="md:flex -mx-3 mb-2">
