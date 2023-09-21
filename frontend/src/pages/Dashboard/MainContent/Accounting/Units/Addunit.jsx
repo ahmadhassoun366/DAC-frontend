@@ -7,12 +7,39 @@ const Addunit = () => {
     const [description, setDescription] = useState("");
     const [subUnit, setSubUnit] = useState("");
 
-    // Function to handle form submission
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Perform your form submission logic here
-        console.log("Form submitted with data:", { unitName, description, subUnit });
+    
+        // Construct the payload
+        const payload = {
+            name: unitName,
+            unit_symbol: description, 
+            sub_unit: subUnit
+        };
+        
+    
+        try {
+            // Make a POST request to your API endpoint
+            const response = await fetch('http://127.0.0.1:8000/api/unit/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(payload)
+            });
+    
+            if (response.ok) {
+                const data = await response.json();
+                console.log("Success:", data);
+                // Here you can reset your form or navigate the user to another page or show a success message
+            } else {
+                console.error("Error:", response.statusText);
+            }
+        } catch (error) {
+            console.error("There was an error submitting the form", error);
+        }
     };
+    
 
     return (
         <div className="py-6 px-4">
@@ -64,8 +91,8 @@ const Addunit = () => {
                             required
                         >
                             <option value="" disabled>Select sub unit</option>
-                            <option value="subUnit1">Sub Unit 1</option>
-                            <option value="subUnit2">Sub Unit 2</option>
+                            <option value="1">Sub Unit 1</option>
+                            <option value="2">Sub Unit 2</option>
                             {/* Add more options as needed */}
                         </select>
                     </div>
