@@ -1,46 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import { toast } from "react-toastify";
 const ItemsDetails = ({ item, onEdit, onDelete }) => {
     const [isEditing, setisEditing] = useState(false);
     const [items, setItems] = useState([]);
+
+    //http://127.0.0.1:8000/api/item/<int:item_id>/update/
+
     const UpdateDetails = (item) => {
         setisEditing(true);
         onEdit(item);
     }
     const history = useNavigate();
-  
+
     const handleDelete = (id) => {
         // Start deletion process, you may want to set some loading state here
         console.log(`Deleting item with id: ${id}`);
-      
+
         // Make a DELETE request to your API endpoint
         fetch(`http://127.0.0.1:8000/api/item/${id}/delete`, {
-          method: 'DELETE',
+            method: 'DELETE',
         })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-            // You may want to remove the item from the local state here
-            setItems(items.filter((item) => item.id !== id));
-            history('/dashboard/stock/items');
-          })
-          .catch((error) => {
-            // Handle errors
-            console.error(`There was a problem with the delete request: ${error}`);
-          });
-      };
-    
-
-    const details = [
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // You may want to remove the item from the local state here
+                setItems(items.filter((item) => item.id !== id));
+                toast.success("Successfully deleted!");
+                history('/dashboard/stock/items');
+            })
+            .catch((error) => {
+                // Handle errors
+                console.error(`There was a problem with the delete request: ${error}`);
+            });
+    };
+    const [details, setDetails] = useState([
         { id: 1, label: 'Supcode', value: item.supcode },
         { id: 2, label: 'Code', value: item.code },
         { id: 3, label: 'Unit', value: item.unit },
         { id: 4, label: 'Quantity', value: item.quantity },
         { id: 5, label: 'Total', value: item.total },
         { id: 6, label: 'TVA', value: item.TVA },
-        { id: 7, label: 'TVA Value', value: item.TVA_value },
+        // { id: 7, label: 'TVA Value', value: item.TVA_value },
         { id: 8, label: 'TTC Value', value: item.TTC },
         { id: 9, label: 'Place', value: item.place },
         { id: 10, label: 'Value Cost', value: item.addValueCost },
@@ -54,7 +56,51 @@ const ItemsDetails = ({ item, onEdit, onDelete }) => {
         { id: 18, label: 'Inventory Account', value: item.inventory_account },
         // { id: 19, label: 'Manager', value: item.manager },
         { id: 20, label: 'Image', value: item.image }
-    ];
+    ]);
+    const [updatedItem, setUpdatedItem] = useState({ ...item });
+    const handleInputChange = (e, id) => {
+        const updatedDetails = details.map((detail) => {
+            if (detail.id === id) {
+                // Update the detail in details state
+                return { ...detail, value: e.target.value };
+            }
+            return detail;
+        });
+
+        setDetails(updatedDetails); // Update the details state
+
+        // Update the updatedItem state as well
+        const updatedValue = e.target.value;
+        setUpdatedItem((prevItem) => ({
+            ...prevItem,
+            [details.find((detail) => detail.id === id).label]: updatedValue,
+        }));
+    };
+
+    const handleUpdate = (id) => {
+        console.log("updatedItem", updatedItem)
+        console.log(`Updating item with id: ${id}`);
+
+        fetch(`http://127.0.0.1:8000/api/item/${item.id}/update`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(updatedItem),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok: ${response.statusText}`);
+                }
+                toast.success('Successfully updated!');
+            })
+            .catch((error) => {
+                // Handle errors
+                console.error(`There was a problem with the update request: ${error.message}`);
+                // Display an error message to the user
+                toast.error('Update failed. Please try again later.');
+            });
+    };
 
     return (
 
@@ -86,7 +132,51 @@ const ItemsDetails = ({ item, onEdit, onDelete }) => {
                                     <div className="shadow-sm border border-gray-200 p-6 rounded-lg">
                                         <div className="text-lg text-gray-900 font-semibold pb-2">{detail.label}</div>
                                         {isEditing ? (
-                                            <input className="w-full px-5 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none" type="text" defaultValue={detail.value} />
+                                            // Check the data type and render accordingly
+                                            detail.label === 'Image' ? (
+                                                <input
+                                                    className="w-full px-5 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none"
+                                                    type="file"
+                                                    accept="image/*"
+                                                    value={detail.value}
+                                                    onChange={(e) => handleInputChange(e, detail.id)}
+                                                />
+                                            ) : detail.label === 'Unit' ? (
+                                                <select
+                                                    className="w-full px-5 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none"
+                                                    value={detail.value}
+                                                    onChange={(e) => handleInputChange(e, detail.id)}
+                                                >
+                                                    <option value="option1">Unit 1</option>
+                                                    <option value="option2">Unit 2</option>
+                                                </select>
+                                            ) : detail.label === 'TVA' ? (
+                                                <select
+                                                    className="w-full px-5 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none"
+                                                    value={detail.value}
+                                                    onChange={(e) => handleInputChange(e, detail.id)}
+                                                >
+                                                    <option value="option1">No TVA</option>
+                                                    <option value="option2">5%</option>
+                                                    <option value="option2">10%</option>
+                                                </select>
+                                            ) : detail.label === 'Inventory Account' ? (
+                                                <select
+                                                    className="w-full px-5 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none"
+                                                    value={detail.value}
+                                                    onChange={(e) => handleInputChange(e, detail.id)}
+                                                >
+                                                    <option value="option1">A</option>
+                                                    <option value="option2">B</option>
+                                                </select>
+                                            ) : (
+                                                <input
+                                                    className="w-full px-5 py-3 text-gray-700 bg-gray-200 rounded border-none focus:outline-none"
+                                                    type="text"
+                                                    defaultValue={detail.value}
+                                                    onChange={(e) => handleInputChange(e, detail.id)}
+                                                />
+                                            )
                                         ) : (
                                             <h1 className="text-xl text-gray-700 font-bold">{detail.value}</h1>
                                         )}
@@ -95,11 +185,11 @@ const ItemsDetails = ({ item, onEdit, onDelete }) => {
                             ))}
                         </div>
                     </div>
-
                     <div className="flex items-center pb-3">
                         {isEditing ?
                             (
-                                <button className="mr-4 bg-cyan-700 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                                <button onClick={() => handleUpdate(item.id)}
+                                    className="mr-4 bg-cyan-700 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
                                     Update
                                 </button>
                             ) :
