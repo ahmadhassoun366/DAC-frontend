@@ -25,6 +25,7 @@ const Additem = () => {
   const [inventory_account, setInventoryAccount] = useState("");
   const [image, setImage] = useState(null);
   const [minimum_quantity, setMquentity] = useState("");
+  const [kind, setKind] = useState("");
   const manager = localStorage.getItem("userId");
   console.log("manager", manager);
 
@@ -52,7 +53,7 @@ const Additem = () => {
     formData.append("manager", manager);
     formData.append("image", image);
     formData.append("minimum_quantity", minimum_quantity);
-    
+    formData.append("kind", kind);
 
     try {
       const response = await fetch("http://127.0.0.1:8000/api/item/add", {
@@ -115,7 +116,7 @@ const Additem = () => {
               <div className="flex flex-col m-4">
                 <label className="mb-2">Unit</label>
                 <select
-                  className="border-2 bg-white"
+                  className="border-2 p-2 w-[200px] "
                   value={unit}
                   onChange={(e) => setUnit(e.target.value)}
                 >
@@ -180,7 +181,7 @@ const Additem = () => {
             <div className="md:flex -mx-3 mb-2"></div>
             <div className="md:flex -mx-3 mb-2">
               <div className="flex flex-col m-4">
-                <label className="mb-2">Value Cost</label>
+                <label className="mb-2">Add Value Cost</label>
                 <input
                   className="border-2 p-2"
                   type="text"
@@ -190,13 +191,25 @@ const Additem = () => {
                 />
               </div>
               <div className="flex flex-col m-4">
-                <label className="mb-2">Unit Price</label>
+                <label className="mb-2">TTC</label>
                 <input
                   className="border-2 p-2"
                   type="number"
-                  placeholder="Unit Price (optional)"
-                  value={unit_price}
+                  placeholder="TTC Auto Calculated"
+                  value={ttc}
                   onChange={(e) => setUnitPrice(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className="md:flex -mx-3 mb-2">
+              <div className="flex flex-col m-4">
+                <label className="mb-2">Kind</label>
+                <input
+                  className="border-2 p-2"
+                  type="text"
+                  placeholder="Item Kind"
+                  value={kind}
+                  onChange={(e) => setKind(e.target.value)}
                 />
               </div>
             </div>
@@ -208,7 +221,7 @@ const Additem = () => {
                 <input
                   className="border-2 p-2"
                   type="number"
-                  placeholder="Cost (optional)"
+                  placeholder="Cost Auto Calculated"
                   value={cost}
                   onChange={(e) => setCost(e.target.value)}
                 />

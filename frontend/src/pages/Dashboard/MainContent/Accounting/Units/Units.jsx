@@ -1,71 +1,125 @@
-import { React, useState } from "react";
-import { Link } from "react-router-dom";
+import { React, useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import Addunit from "../Units/Addunit";
+import Editunit from "../Units/Editunit";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const Units = () => {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [units, setUnits] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [editingUnit, setEditingUnit] = useState(null);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  
+  const history = useNavigate();
 
-    const openModal = () => {
-        setIsOpen(true);
-    };
+  const openAddModal = () => {
+    setIsAddModalOpen(true);
+};
 
-    const closeModal = () => {
-        setIsOpen(false);
-    };
-    return (
-        <div class="pt-6 px-4">
-            <div className="flex justify-end items-center mr-10">
-                <button
-                    // to="./addunit"
-                    onClick={() => openModal()}
-                    className="mt-4 bg-gray-900 text-white px-2 py-2 rounded inline-flex items-center"
-                >
-                    + Add Unit
-                </button>
-            </div>
-            <div className="mx-10 mt-4 mr-10 ">
-                <table className="w-full bg-white border rounded-lg shadow-lg">
-                    <thead>
-                        <tr>
-                            <th className="border px-4 py-2">unitName</th>
-                            <th className="border px-4 py-2">symbol</th>
-                            <th className="border px-4 py-2">subUnit</th>
-                            <th className="border px-4 py-2">operation</th>
-                            <th className="border px-4 py-2">amount</th>
+const closeAddModal = () => {
+    setIsAddModalOpen(false);
+};
 
-                            {/* Add more column headers as needed */}
-                            <th className="border px-4 py-2">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr className="hover:bg-gray-100" >
-                            <td className="border px-4 py-2">itemDetails.unitName</td>
-                            <td className="border px-4 py-2">itemDetails.symbol</td>
-                            <td className="border px-4 py-2">itemDetails.subUnit</td>
-                            <td className="border px-4 py-2">itemDetails.operation</td>
-                            <td className="border px-4 py-2">itemDetails.amount</td>
-                            <td className="border px-4 py-2 flex justify-center items-center">
-                                <button
-                                    className="bg-gray-900 text-white px-5 py-1 rounded mr-1"
-                                >
-                                    Delete
-                                </button>
-                                <button
-                                    className="bg-gray-900 text-white px-5 py-1 rounded mr-1"
-                                >
-                                    Edit
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            <div className={`fixed inset-0 z-50 ${isOpen ? '' : 'hidden'}`} style={{ top: "auto", left: "60%" }}>
-                <Addunit closeModal={closeModal} />
-            </div>
+const openEditModal = (unit) => {
+    setEditingUnit(unit);
+    setIsEditModalOpen(true);
+};
 
+const closeEditModal = () => {
+    setIsEditModalOpen(false);
+    setEditingUnit(null); // optional, in case you want to clear out the editing unit
+};
+  useEffect(() => {
+    fetchUnits();
+  }, []);
 
-        </div >
-    )
-}
+  const fetchUnits = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get("http://127.0.0.1:8000/api/unit");
+      setUnits(response.data);
+      console.log("response", response.data);
+      setIsLoading(false);
+    } catch (error) {
+      console.error("Error fetching the units:", error);
+      setError(error);
+      setIsLoading(false);
+    }
+  };
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://127.0.0.1:8000/api/unit/${id}/delete`)
+      .then((response) => {
+        setUnits(units.filter((unit) => unit.id !== id));
+        toast.success("Successfully deleted!");
+        history("/dashboard/accounting/units");
+      })
+      .catch((error) => {
+        console.error(`There was a problem with the delete request: ${error}`);
+      });
+  };
+
+  return (
+    <div className="pt-6 px-4">
+      <div className="flex justify-end items-center mr-10">
+        <button
+         onClick={openAddModal}
+          className="mt-4 bg-gray-900 text-white px-2 py-2 rounded inline-flex items-center"
+        >
+          + Add Unit
+        </button>
+      </div>
+      <div className="mx-10 mt-4 mr-10">
+        <table className="w-full bg-white border rounded-lg shadow-lg">
+          <thead>
+            <tr>
+              <th className="border px-4 py-2">unitName</th>
+              <th className="border px-4 py-2">symbol</th>
+              {/* ... other headers */}
+              <th className="border px-4 py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {/* I assume itemDetails is an array. If it's a single object, remove the map */}
+            {units.map((unit) => (
+              <tr className="hover:bg-gray-100" key={unit.id}>
+                <td className="border px-4 py-2">{unit.name}</td>
+                <td className="border px-4 py-2">{unit.unit_symbol}</td>
+                <td className="border px-4 py-2">{unit.sub_unit}</td>
+                {/* ... other data cells */}
+                <td className="border px-4 py-2 flex justify-center items-center">
+                  <button
+                    onClick={() => handleDelete(unit.id)}
+                    className="bg-gray-900 text-white px-5 py-1 rounded mr-1"
+                  >
+                    Delete
+                  </button>
+                  <button
+                 onClick={() => openEditModal(unit)}
+                    className="bg-gray-900 text-white px-5 py-1 rounded mr-1"
+                  >
+                    Edit
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div
+        className={`fixed inset-0 z-50 ${isEditModalOpen  ? "" : "hidden"}`}
+        style={{ top: "auto", left: "60%" }}
+      >
+        <Addunit closeModal={closeAddModal} />
+        <Editunit  unitDetails={editingUnit} closeModal={closeEditModal} />
+
+      </div>
+    </div>
+  );
+};
 export default Units;
