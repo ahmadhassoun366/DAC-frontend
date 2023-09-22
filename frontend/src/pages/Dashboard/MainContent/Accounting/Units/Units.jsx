@@ -13,26 +13,26 @@ const Units = () => {
   const [editingUnit, setEditingUnit] = useState(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  
+
   const history = useNavigate();
 
   const openAddModal = () => {
     setIsAddModalOpen(true);
-};
+  };
 
-const closeAddModal = () => {
+  const closeAddModal = () => {
     setIsAddModalOpen(false);
-};
+  };
 
-const openEditModal = (unit) => {
+  const openEditModal = (unit) => {
     setEditingUnit(unit);
     setIsEditModalOpen(true);
-};
+  };
 
-const closeEditModal = () => {
+  const closeEditModal = () => {
     setIsEditModalOpen(false);
     setEditingUnit(null); // optional, in case you want to clear out the editing unit
-};
+  };
   useEffect(() => {
     fetchUnits();
   }, []);
@@ -68,7 +68,7 @@ const closeEditModal = () => {
     <div className="pt-6 px-4">
       <div className="flex justify-end items-center mr-10">
         <button
-         onClick={openAddModal}
+          onClick={openAddModal}
           className="mt-4 bg-gray-900 text-white px-2 py-2 rounded inline-flex items-center"
         >
           + Add Unit
@@ -100,7 +100,7 @@ const closeEditModal = () => {
                     Delete
                   </button>
                   <button
-                 onClick={() => openEditModal(unit)}
+                    onClick={() => openEditModal(unit)}
                     className="bg-gray-900 text-white px-5 py-1 rounded mr-1"
                   >
                     Edit
@@ -112,12 +112,17 @@ const closeEditModal = () => {
         </table>
       </div>
       <div
-        className={`fixed inset-0 z-50 ${isEditModalOpen  ? "" : "hidden"}`}
+        className={`fixed inset-0 z-50 ${isEditModalOpen ? "" : "hidden"}`}
+        style={{ top: "auto", left: "60%" }}
+      >
+        <Editunit unitDetails={editingUnit} closeModal={closeEditModal} />
+
+      </div>
+      <div
+        className={`fixed inset-0 z-50 ${isAddModalOpen ? "" : "hidden"}`}
         style={{ top: "auto", left: "60%" }}
       >
         <Addunit closeModal={closeAddModal} />
-        <Editunit  unitDetails={editingUnit} closeModal={closeEditModal} />
-
       </div>
     </div>
   );
