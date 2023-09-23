@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const Units = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [units, setUnits] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,33 +13,28 @@ const Units = () => {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-
   const history = useNavigate();
 
   const openAddModal = () => {
     setIsAddModalOpen(true);
   };
-  };
 
-  const closeAddModal = () => {
   const closeAddModal = () => {
     setIsAddModalOpen(false);
   };
-  };
 
-  const openEditModal = (unit) => {
   const openEditModal = (unit) => {
     setEditingUnit(unit);
     setIsEditModalOpen(true);
   };
-  };
 
-  const closeEditModal = () => {
+
+  
   const closeEditModal = () => {
     setIsEditModalOpen(false);
     setEditingUnit(null); // optional, in case you want to clear out the editing unit
   };
-  };
+
   useEffect(() => {
     fetchUnits();
   }, []);
@@ -76,7 +70,6 @@ const Units = () => {
     <div className="pt-6 px-4">
       <div className="flex justify-end items-center mr-10">
         <button
-          onClick={openAddModal}
           onClick={openAddModal}
           className="mt-4 bg-gray-900 text-white px-2 py-2 rounded inline-flex items-center"
         >
@@ -114,7 +107,6 @@ const Units = () => {
                     Delete
                   </button>
                   <button
-                    onClick={() => openEditModal(unit)}
                     onClick={() => openEditModal(unit)}
                     className="bg-gray-900 text-white px-5 py-1 rounded mr-1"
                   >
