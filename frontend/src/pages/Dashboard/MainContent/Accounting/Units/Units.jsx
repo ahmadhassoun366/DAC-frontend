@@ -29,7 +29,7 @@ const Units = () => {
   };
 
 
-  
+
   const closeEditModal = () => {
     setIsEditModalOpen(false);
     setEditingUnit(null); // optional, in case you want to clear out the editing unit
@@ -52,7 +52,9 @@ const Units = () => {
       setIsLoading(false);
     }
   };
-
+  const UpdateSettingUnits = () => {
+    fetchUnits();
+  }
   const handleDelete = (id) => {
     axios
       .delete(`http://127.0.0.1:8000/api/unit/${id}/delete`)
@@ -123,7 +125,7 @@ const Units = () => {
         className={`fixed inset-0 z-50 ${isAddModalOpen ? "" : "hidden"}`}
         style={{ top: "auto", left: "60%" }}
       >
-        <Addunit closeModal={closeAddModal} />
+        <Addunit closeModal={closeAddModal} UpdateSettingUnits={UpdateSettingUnits} />
       </div>
 
       <div

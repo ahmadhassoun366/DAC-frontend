@@ -1,7 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
+import { React, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { toast } from 'react-toastify';
 const NavBar = () => {
+  const navigate = useNavigate();
+  const { logout } = useContext(AuthContext);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/');
+      toast.success("Logout Successfully");
+
+    } catch (error) {
+      toast.error("Logout error");
+    }
+  };
   return (
     <nav class="bg-gray-900 border-b border-gray-200 fixed z-30 w-full">
       <div class="px-3 py-3 lg:px-5 lg:pl-3">
@@ -107,9 +121,9 @@ const NavBar = () => {
               </svg>
             </button>
             <div class="hidden lg:flex items-center ">
-              <span class="text-base font-bold text-white mr-5 hover:bg-white px-3 py-2 rounded-lg hover:text-gray-900">
+              <button class="text-base font-bold text-white mr-5 hover:bg-white px-3 py-2 rounded-lg hover:text-gray-900" onClick={() => handleLogout()}>
                 Logout
-              </span>
+              </button>
             </div>
             <a
               href="#"
