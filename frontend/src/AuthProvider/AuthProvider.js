@@ -52,6 +52,7 @@ const AuthProvider = ({ children }) => {
         // Use the user ID as needed
         setUserId(userId);
         localStorage.setItem("userId", userId);
+        localStorage.setItem("isAuthenticated", true.toString());
       }
       if (userId) {
         const managerResponse = await axios.get(
