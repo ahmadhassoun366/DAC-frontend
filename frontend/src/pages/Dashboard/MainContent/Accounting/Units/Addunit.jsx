@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { toast } from "react-toastify";
 const Addunit = (props) => {
     // State for form fields
     const [unitName, setUnitName] = useState("");
@@ -35,6 +35,8 @@ const Addunit = (props) => {
                 const data = await response.json();
                 console.log("Success:", data);
                 // Here you can reset your form or navigate the user to another page or show a success message
+                props.UpdateSettingUnits();
+                toast.success("Successfully Added!");
             } else {
                 console.error("Error:", response.statusText);
             }
