@@ -132,7 +132,7 @@ const Units = () => {
         className={`fixed inset-0 z-50 ${isEditModalOpen ? "" : "hidden"}`}
         style={{ top: "auto", left: "60%" }}
       >
-        <Editunit unitDetails={editingUnit} loseModal={closeEditModal} />
+        <Editunit unitDetails={editingUnit} loseModal={closeEditModal} UpdateSettingUnits={UpdateSettingUnits} />
       </div>
     </div>
   );

@@ -9,7 +9,6 @@ import Accounting from "./Accounting/Accounting";
 import Units from "./Accounting/Units/Units";
 import Addunit from "./Accounting/Units/Addunit";
 const MainContent = () => {
-  const [currentitem, setcurrentitem] = useState({ supcode: "a1111" });
   const [itemID, setitemID] = useState(null);
 
   const [error, setError] = useState(null);
@@ -35,21 +34,12 @@ const MainContent = () => {
         <Route path="accounting/units" element={<Units />} />
         <Route path="accounting/units/addunit" element={<Addunit />} />
         <Route
-          path="Stock/Items"
+          path="Stock/Items/*"
           element={
-            <Items setcurrentitem={setcurrentitem} currentitem={currentitem} />
+            <Items />
           }
         />
         <Route path="Stock/Items/addItems" element={<Additem />} />
-        <Route
-          path="Stock/items/itemdetails"
-          element={
-            <ItemsDetails
-              item={currentitem}
-              onEdit={onEdit}
-            />
-          }
-        />
       </Routes>
     </main>
   );

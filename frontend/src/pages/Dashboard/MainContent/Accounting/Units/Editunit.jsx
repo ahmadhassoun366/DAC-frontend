@@ -9,18 +9,17 @@ const EditUnit = (props) => {
 
   useEffect(() => {
     // When component mounts, populate state with props data
-    if (props.unit) {
-      setUnitName(props.unit.name);
-      setSymbol(props.unit.unit_symbol);
-      setSubUnit(props.unit.sub_unit);
-      setOperation(props.unit.operation);
-      setAmount(props.unit.amount);
+    if (props.unitDetails) {
+      setUnitName(props.unitDetails.name);
+      setSymbol(props.unitDetails.unit_symbol);
+      setSubUnit(props.unitDetails.sub_unit);
+      setOperation(props.unitDetails.operation);
+      setAmount(props.unitDetails.amount);
     }
-  }, [props.unit]);
+  }, [props.unitDetails]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const payload = {
       name: unitName,
       unit_symbol: symbol,
@@ -32,7 +31,7 @@ const EditUnit = (props) => {
     try {
       // Adjust the API endpoint and method for editing
       const response = await fetch(
-        `http://127.0.0.1:8000/api/unit/edit/${props.unit.id}`,
+        `http://127.0.0.1:8000/api/unit/${props.unitDetails.id}/update`,
         {
           method: "PUT",
           headers: {
@@ -41,10 +40,11 @@ const EditUnit = (props) => {
           body: JSON.stringify(payload),
         }
       );
-
       if (response.ok) {
         const data = await response.json();
         console.log("Edited:", data);
+        props.UpdateSettingUnits();
+        props.loseModal();
         // Additional success actions (e.g., updating UI, navigating, etc.)
       } else {
         console.error("Error:", response.statusText);
@@ -71,7 +71,7 @@ const EditUnit = (props) => {
               type="text"
               id="unitName"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-400"
-              placeholder="Enter unit name"
+              placeholder={unitName}
               value={unitName}
               onChange={(e) => setUnitName(e.target.value)}
               required
@@ -171,6 +171,7 @@ const EditUnit = (props) => {
         <div className="mt-4 text-center">
           <button
             className="text-black-500 hover:underline"
+            onClick={() => props.loseModal()}
           >
             Cancel
           </button>

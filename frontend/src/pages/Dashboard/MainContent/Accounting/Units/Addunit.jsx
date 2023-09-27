@@ -8,7 +8,7 @@ const Addunit = (props) => {
     const [subUnit, setSubUnit] = useState("");
     const [operation, setOperation] = useState("");
     const [amount, setAmount] = useState(""); // New state for Amount
-
+    //fetch subunit http://127.0.0.1:8000/api/subunit/
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -36,6 +36,7 @@ const Addunit = (props) => {
                 console.log("Success:", data);
                 // Here you can reset your form or navigate the user to another page or show a success message
                 props.UpdateSettingUnits();
+                props.closeModal()
                 toast.success("Successfully Added!");
             } else {
                 console.error("Error:", response.statusText);
