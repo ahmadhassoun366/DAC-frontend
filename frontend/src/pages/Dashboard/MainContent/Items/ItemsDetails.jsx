@@ -53,74 +53,35 @@ const ItemsDetails = ({ item, onEdit, onDelete }) => {
       });
   };
 
-  const [details, setDetails] = useState([
-    { id: 1, label: "supcode", value: item.supcode },
-    { id: 2, label: "code", value: item.code },
-    { id: 3, label: "unit", value: item.unit },
-    { id: 4, label: "quantity", value: item.quantity },
-    { id: 5, label: "total", value: item.total },
-    { id: 6, label: "tva", value: item.TVA },
-    { id: 8, label: "ttc", value: item.TTC },
-    { id: 9, label: "place", value: item.place },
-    { id: 10, label: "addValueCost", value: item.addValueCost },
-    { id: 12, label: "Cost", value: item.cost },
-    { id: 13, label: "revenue", value: item.revenue },
-    { id: 14, label: "purchase", value: item.purchase },
-    { id: 15, label: "expense", value: item.expense },
-    { id: 16, label: "final_good", value: item.final_good },
-    { id: 17, label: "change_inv_acc", value: item.change_inv_acc },
-    { id: 19, label: 'manager', value: item.manager },
-    { id: 20, label: "image", value: item.image },
-  ]);
-  const [updatedItem, setUpdatedItem] = useState({ ...item });
-  // const handleInputChange = (e, id) => {
-  //   const updatedDetails = details.map((detail) => {
-  //     if (detail.id === id) {
-  //       // Update the detail in details state
-  //       return { ...detail, value: e.target.value };
-  //     }
-  //     return detail;
-  //   });
-
-  //   setDetails(updatedDetails); // Update the details state
-
-  //   // Update the updatedItem state as well
-  //   const updatedValue = e.target.value;
-  //   setUpdatedItem((prevItem) => ({
-  //     ...prevItem,
-  //     [details.find((detail) => detail.id === id).label]: updatedValue,
-  //   }));
-  // };
-
   const handleUpdate = (id) => {
-
+    const payload = {
+      supcode,
+      code,
+      name,
+      unit,
+      quantity,
+      total,
+      tva,
+      ttc,
+      place,
+      addValueCost,
+      cost,
+      revenue,
+      purchase,
+      expense,
+      final_good,
+      change_inv_acc,
+      manager,
+      image
+    };
     console.log(`Updating item with id: ${id}`, supcode);
-    const formData = new FormData();
-    formData.append("supcode", supcode);
-    formData.append("code", code);
-    formData.append("name", name);
-    formData.append("unit", unit);
-    formData.append("quantity", quantity);
-    formData.append("total", total);
-    formData.append("tva", tva);
-    formData.append("ttc", ttc);
-    formData.append("place", place);
-    formData.append("addValueCost", addValueCost);
-    formData.append("cost", cost);
-    formData.append("revenue", revenue);
-    formData.append("purchase", purchase);
-    formData.append("expense", expense);
-    formData.append("final_good", final_good);
-    formData.append("change_inv_acc", change_inv_acc);
-    formData.append("manager", manager);
-    formData.append("image", image);
 
     fetch(`http://127.0.0.1:8000/api/item/${item.id}/update`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(payload),
     })
       .then((response) => {
         if (!response.ok) {
@@ -129,6 +90,7 @@ const ItemsDetails = ({ item, onEdit, onDelete }) => {
           );
         }
         toast.success("Successfully updated!");
+        history("/dashboard/stock/items");
       })
       .catch((error) => {
         // Handle errors
