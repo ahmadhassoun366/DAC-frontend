@@ -16,7 +16,7 @@ const Addunit = (props) => {
         const payload = {
             name: unitName,
             unit_symbol: symbol,
-            sub_unit: subUnit,
+            sub_unit: subUnit.name,
             operation,
             amount, // Include Amount in the payload
         };
@@ -130,8 +130,8 @@ const Addunit = (props) => {
                             required
                         >
                             <option value="" disabled>Select sub unit</option>
-                            <option value="1">Sub Unit 1</option>
-                            <option value="2">Sub Unit 2</option>
+                            <option value="1">{subUnit.name}</option>
+                            <option value="2">{subUnit.name}</option>
                             {/* Add more options as needed */}
                         </select>
                     </div>
