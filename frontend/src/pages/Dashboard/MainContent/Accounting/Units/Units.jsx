@@ -97,7 +97,7 @@ const Units = () => {
               <tr className="hover:bg-gray-100" key={unit.id}>
                 <td className="border px-4 py-2">{unit.name}</td>
                 <td className="border px-4 py-2">{unit.unit_symbol}</td>
-                <td className="border px-4 py-2">{unit.sub_unit}</td>
+                <td className="border px-4 py-2">{unit.sub_unit.sub_unit_symbol}</td>
                 <td className="border px-4 py-2">{unit.operation}</td>
                 <td className="border px-4 py-2">{unit.amount}</td>
                 {/* ... other data cells */}

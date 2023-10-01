@@ -8,6 +8,7 @@ import ItemsDetails from "./Items/ItemsDetails";
 import Accounting from "./Accounting/Accounting";
 import Units from "./Accounting/Units/Units";
 import Addunit from "./Accounting/Units/Addunit";
+import Subunits from "./Accounting/Subunits/Subunits";
 const MainContent = () => {
   const [itemID, setitemID] = useState(null);
 
@@ -33,6 +34,7 @@ const MainContent = () => {
         <Route path="accounting" element={<Accounting />} />
         <Route path="accounting/units" element={<Units />} />
         <Route path="accounting/units/addunit" element={<Addunit />} />
+        <Route path="accounting/Subunits" element={<Subunits />} />
         <Route
           path="Stock/Items/*"
           element={
