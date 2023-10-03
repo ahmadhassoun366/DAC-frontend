@@ -9,6 +9,8 @@ import Accounting from "./Accounting/Accounting";
 import Units from "./Accounting/Units/Units";
 import Addunit from "./Accounting/Units/Addunit";
 import Subunits from "./Accounting/Subunits/Subunits";
+import Managment from "./Managment/Managment";
+import TVAs from "./Managment/TVAs/TVAs";
 const MainContent = () => {
   const [itemID, setitemID] = useState(null);
 
@@ -32,6 +34,8 @@ const MainContent = () => {
         <Route index element={<MainDashboard />} />
         <Route path="stock" element={<Stock />} />
         <Route path="accounting" element={<Accounting />} />
+        <Route path="Managment" element={<Managment />} />
+        <Route path="Managment/tva" element={<TVAs />} />
         <Route path="accounting/units" element={<Units />} />
         <Route path="accounting/units/addunit" element={<Addunit />} />
         <Route path="accounting/Subunits" element={<Subunits />} />

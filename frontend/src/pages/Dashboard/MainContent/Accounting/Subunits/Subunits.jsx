@@ -37,6 +37,7 @@ const Subunits = () => {
 
     useEffect(() => {
         fetchUnits();
+
     }, []);
 
     const fetchUnits = async () => {
@@ -54,6 +55,7 @@ const Subunits = () => {
     };
     const UpdateSettingUnits = () => {
         fetchUnits();
+
     }
     const handleDelete = (id) => {
         axios
