@@ -34,7 +34,7 @@ const Stock = () => {
                         <img class="w-20 h-20 object-cover rounded-full border-2 border-indigo-500" src={van} alt="" />
                     </div>
                     <div>
-                        <h2 class="text-gray-800 text-3xl font-semibold">Van</h2>
+                        <h2 class="text-gray-800 text-3xl font-semibold">Vehicle</h2>
                         <p class="mt-2 text-gray-600">Track deliveries and manage logistics for your business operations</p>
                         <Link class="mt-4  text-white px-6  py-2 rounded inline-flex items-center bg-cyan-600">Visit</Link>
                     </div>
