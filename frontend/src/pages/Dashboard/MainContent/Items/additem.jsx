@@ -60,15 +60,15 @@ const Additem = () => {
         method: 'POST',
         body: formData,
       });
-  
+
       const data = await response.json();
-  
+
       // handle the response as needed
       console.log(data);
     } catch (error) {
       console.error("Error uploading the data", error);
     }
-  
+
   };
 
   useEffect(() => {
@@ -203,7 +203,7 @@ const Additem = () => {
             </div>
             <div className="md:flex -mx-3 mb-2">
               <div className="flex flex-col m-4">
-                <label className="mb-2">Kind</label>
+                <label className="mb-2">Group Kind</label>
                 <input
                   className="border-2 p-2"
                   type="text"

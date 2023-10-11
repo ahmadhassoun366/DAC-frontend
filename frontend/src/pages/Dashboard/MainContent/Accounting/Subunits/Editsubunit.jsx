@@ -1,24 +1,13 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
-const EditUnit = (props) => {
+
+const EditsubUnit = (props) => {
   const [unitName, setUnitName] = useState("");
   const [symbol, setSymbol] = useState("");
   const [subUnit, setSubUnit] = useState("");
   const [operation, setOperation] = useState("");
   const [amount, setAmount] = useState("");
-  const [Subunitlist, setSubunitlist] = useState([]);
 
-  const fetchSubUnits = async () => {
-    try {
-      const response = await axios.get("http://127.0.0.1:8000/api/subunit");
-      setSubunitlist(response.data);
-      console.log("response", response.data);
-    } catch (error) {
-      console.error("Error fetching the units:", error);
-    }
-  };
   useEffect(() => {
-    fetchSubUnits();
     // When component mounts, populate state with props data
     if (props.unitDetails) {
       setUnitName(props.unitDetails.name);
@@ -42,7 +31,7 @@ const EditUnit = (props) => {
     try {
       // Adjust the API endpoint and method for editing
       const response = await fetch(
-        `http://127.0.0.1:8000/api/unit/${props.unitDetails.id}/update`,
+        `http://127.0.0.1:8000/api/subunit/${props.unitDetails.id}/update`,
         {
           method: "PUT",
           headers: {
@@ -68,7 +57,7 @@ const EditUnit = (props) => {
   return (
     <div className="py-6 px-4">
       <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-semibold mb-4">Edit Unit</h2>
+        <h2 className="text-2xl font-semibold mb-4">Edit Subunit</h2>
         <form onSubmit={handleSubmit}>
           {/* Unit Name */}
           <div className="mb-4">
@@ -76,7 +65,7 @@ const EditUnit = (props) => {
               htmlFor="unitName"
               className="block text-gray-700 font-medium mb-2"
             >
-              Unit Name
+              Subunit Name
             </label>
             <input
               type="text"
@@ -166,11 +155,8 @@ const EditUnit = (props) => {
               <option value="" disabled>
                 Select sub unit
               </option>
-              {Subunitlist.map((option) => (
-                <option key={option.id} value={option.id}>
-                  {option.name}
-                </option>
-              ))}
+              <option value="1">Sub Unit 1</option>
+              <option value="2">Sub Unit 2</option>
             </select>
           </div>
 
@@ -194,4 +180,4 @@ const EditUnit = (props) => {
     </div>
   );
 };
-export default EditUnit;
+export default EditsubUnit;

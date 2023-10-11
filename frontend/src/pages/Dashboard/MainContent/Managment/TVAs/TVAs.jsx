@@ -1,11 +1,11 @@
 import { React, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import Addunit from "../Units/Addunit";
-import Editunit from "../Units/Editunit";
+// import Addunit from "../Units/Addunit";
+// import Editunit from "../Units/Editunit";
 import { toast } from "react-toastify";
 import axios from "axios";
 
-const Units = () => {
+const TVAs = () => {
   const [units, setUnits] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -38,11 +38,10 @@ const Units = () => {
   useEffect(() => {
     fetchUnits();
   }, []);
-
   const fetchUnits = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get("http://127.0.0.1:8000/api/unit");
+      const response = await axios.get("http://127.0.0.1:8000/api/tva");
       setUnits(response.data);
       console.log("response", response.data);
       setIsLoading(false);
@@ -75,20 +74,15 @@ const Units = () => {
           onClick={openAddModal}
           className="mt-4 bg-gray-900 text-white px-2 py-2 rounded inline-flex items-center"
         >
-          + Add Unit
+          + Add TVA
         </button>
       </div>
       <div className="mx-10 mt-4 mr-10">
         <table className="w-full bg-white border rounded-lg shadow-lg">
           <thead>
             <tr>
-              <th className="border px-4 py-2">Unit Name</th>
-              <th className="border px-4 py-2">Symbol</th>
-              {/* ... other headers */}
-              <th className="border px-4 py-2">Sub Unit</th>
-              <th className="border px-4 py-2">Operation</th>
+              <th className="border px-4 py-2">TVA Name</th>
               <th className="border px-4 py-2">Amount</th>
-              <th className="border px-4 py-2">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -96,9 +90,6 @@ const Units = () => {
             {units.map((unit) => (
               <tr className="hover:bg-gray-100" key={unit.id}>
                 <td className="border px-4 py-2">{unit.name}</td>
-                <td className="border px-4 py-2">{unit.unit_symbol}</td>
-                <td className="border px-4 py-2">{unit.sub_unit.sub_unit_symbol}</td>
-                <td className="border px-4 py-2">{unit.operation}</td>
                 <td className="border px-4 py-2">{unit.amount}</td>
                 {/* ... other data cells */}
                 <td className="border px-4 py-2 flex justify-center items-center">
@@ -121,7 +112,7 @@ const Units = () => {
         </table>
       </div>
 
-      <div
+      {/* <div
         className={`fixed inset-0 z-50 ${isAddModalOpen ? "" : "hidden"}`}
         style={{ top: "auto", left: "60%" }}
       >
@@ -133,8 +124,8 @@ const Units = () => {
         style={{ top: "auto", left: "60%" }}
       >
         <Editunit unitDetails={editingUnit} loseModal={closeEditModal} UpdateSettingUnits={UpdateSettingUnits} />
-      </div>
+      </div> */}
     </div>
   );
 };
-export default Units;
+export default TVAs;

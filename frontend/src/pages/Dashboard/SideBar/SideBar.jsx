@@ -139,8 +139,8 @@ const SideBar = () => {
                 </Link>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+              to="/dashboard/Managment"
                   class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                 >
                   <svg
@@ -156,7 +156,7 @@ const SideBar = () => {
                     ></path>
                   </svg>
                   <span class="ml-3 flex-1 whitespace-nowrap">Management</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <Link

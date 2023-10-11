@@ -1,18 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
-const Addunit = (props) => {
+const Addsubunit = (props) => {
     // State for form fields
     const [unitName, setUnitName] = useState("");
     const [symbol, setSymbol] = useState("");
     const [subUnit, setSubUnit] = useState("");
     const [operation, setOperation] = useState("");
-    const [amount, setAmount] = useState("");
-    const [Subunitlist, setSubunitlist] = useState([]);
-
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [amount, setAmount] = useState(""); // New state for Amount
     //fetch subunit http://127.0.0.1:8000/api/subunit/
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -21,14 +16,14 @@ const Addunit = (props) => {
         const payload = {
             name: unitName,
             unit_symbol: symbol,
-            sub_unit: subUnit.name,
+            sub_unit: subUnit,
             operation,
             amount, // Include Amount in the payload
         };
 
         try {
             // Make a POST request to your API endpoint
-            const response = await fetch('http://127.0.0.1:8000/api/unit/add', {
+            const response = await fetch('http://127.0.0.1:8000/api/subunit/add', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,32 +46,16 @@ const Addunit = (props) => {
         }
     };
 
-    const fetchSubUnits = async () => {
-        setIsLoading(true);
-        try {
-            const response = await axios.get("http://127.0.0.1:8000/api/subunit");
-            setSubunitlist(response.data);
-            console.log("response", response.data);
-            setIsLoading(false);
-        } catch (error) {
-            console.error("Error fetching the units:", error);
-            setError(error);
-            setIsLoading(false);
-        }
-    };
-    useEffect(() => {
-        fetchSubUnits();
-        console.log("heeeeeeeeeeeeeeeeeeeeee", Subunitlist)
-    }, []);
+
     return (
         <div className="py-6 px-4">
             <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
-                <h2 className="text-2xl font-semibold mb-4">Add Unit</h2>
+                <h2 className="text-2xl font-semibold mb-4">Add SubUnit</h2>
                 <form onSubmit={handleSubmit}>
                     {/* Unit Name */}
                     <div className="mb-4">
                         <label htmlFor="unitName" className="block text-gray-700 font-medium mb-2">
-                            Unit Name
+                            SubUnit Name
                         </label>
                         <input
                             type="text"
@@ -139,8 +118,8 @@ const Addunit = (props) => {
                         />
                     </div>
 
-                    {/* Sub Unit */}
-                    <div className="mb-4">
+
+                    {/* <div className="mb-4">
                         <label htmlFor="subUnit" className="block text-gray-700 font-medium mb-2">
                             Sub Unit
                         </label>
@@ -152,14 +131,10 @@ const Addunit = (props) => {
                             required
                         >
                             <option value="" disabled>Select sub unit</option>
-                            {Subunitlist.map((option) => (
-                                <option key={option.id} value={option.id}>
-                                    {option.name}
-                                </option>
-                            ))}
-                            {/* Add more options as needed */}
+                            <option value="1">Sub Unit 1</option>
+                            <option value="2">Sub Unit 2</option>
                         </select>
-                    </div>
+                    </div> */}
 
                     <button
                         type="submit"
@@ -182,4 +157,4 @@ const Addunit = (props) => {
     );
 };
 
-export default Addunit;
+export default Addsubunit;
