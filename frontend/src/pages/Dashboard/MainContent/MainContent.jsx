@@ -1,7 +1,10 @@
 import { React, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import MainDashboard from "./MainDashboard/MainDashboard";
-import Stock from "./Stock/Stock";
+import Stock from "./Stocks/Stocks";
+import StoreManager from "./Stocks/StoreManager";
+import VehicleManager from "./Stocks/VehicleManager";
+import ShopManager from "./Stocks/ShopManager";
 import Additem from "./Items/additem";
 import Items from "./Items/Items";
 import ItemsDetails from "./Items/ItemsDetails";
@@ -32,19 +35,23 @@ const MainContent = () => {
     <main>
       <Routes>
         <Route index element={<MainDashboard />} />
-        <Route path="stock" element={<Stock />} />
+        <Route path="Stocks" element={<Stock />} />
+        <Route
+          path="Stocks/stock/:stockName/store"
+          element={<StoreManager />}
+        />
+        <Route path="Stocks/stock/:shopName/shop" element={<ShopManager />} />
+        <Route
+          path="Stocks/stock/:vehicleName/vehicle"
+          element={<VehicleManager />}
+        />
         <Route path="accounting" element={<Accounting />} />
         <Route path="Managment" element={<Managment />} />
         <Route path="Managment/tva" element={<TVAs />} />
         <Route path="accounting/units" element={<Units />} />
         <Route path="accounting/units/addunit" element={<Addunit />} />
         <Route path="accounting/Subunits" element={<Subunits />} />
-        <Route
-          path="Stock/Items/*"
-          element={
-            <Items />
-          }
-        />
+        <Route path="Stock/Items/*" element={<Items />} />
         <Route path="Stock/Items/addItems" element={<Additem />} />
       </Routes>
     </main>

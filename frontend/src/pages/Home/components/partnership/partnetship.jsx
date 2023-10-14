@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const partnetship = () => {
     return (
-        <div class="container mx-auto px-6 py-16 pt-28 text-center">
+        <div id="contact" class="container mx-auto px-6 py-16 pt-28 text-center">
             <div class="mx-auto max-w-lg">
                 <h1 class="text-3xl font-bold text-gray-900 md:text-4xl">Strategic Business Solution Partnerships</h1>
 
