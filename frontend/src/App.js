@@ -26,8 +26,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          {/* <Route path="/dashboard/*" element={<Dashboard />} /> */}
-          {isAuthenticated ? (
+          <Route path="/dashboard/*" element={<Dashboard />} />
+          {/* {isAuthenticated ? (
             <Route path="/dashboard/*" element={<Dashboard />} />
           ) : (
             <Route
@@ -41,7 +41,7 @@ function App() {
             element={
               isAuthenticated ? <CreateCompany /> : <Navigate to="/login" />
             }
-          />{" "}
+          />{" "} */}
         </Routes>
         <ToastContainer />
       </AuthProvider>

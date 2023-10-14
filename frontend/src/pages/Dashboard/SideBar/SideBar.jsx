@@ -99,8 +99,8 @@ const SideBar = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
+                <Link
+                  to="/dashboard/Items"
                   class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                 >
                   <svg
@@ -116,7 +116,7 @@ const SideBar = () => {
                     ></path>
                   </svg>
                   <span class="ml-3 flex-1 whitespace-nowrap">Products</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <Link
@@ -140,7 +140,7 @@ const SideBar = () => {
               </li>
               <li>
                 <Link
-              to="/dashboard/Managment"
+                  to="/dashboard/Managment"
                   class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                 >
                   <svg
@@ -234,7 +234,7 @@ const SideBar = () => {
               </a>
 
               <Link
-                to='/'
+                to="/"
                 target="_blank"
                 class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2"
               >

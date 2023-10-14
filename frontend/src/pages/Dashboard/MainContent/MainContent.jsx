@@ -51,8 +51,8 @@ const MainContent = () => {
         <Route path="accounting/units" element={<Units />} />
         <Route path="accounting/units/addunit" element={<Addunit />} />
         <Route path="accounting/Subunits" element={<Subunits />} />
-        <Route path="Stock/Items/*" element={<Items />} />
-        <Route path="Stock/Items/addItems" element={<Additem />} />
+        <Route path="Items/*" element={<Items />} />
+        <Route path="Items/addItems" element={<Additem />} />
       </Routes>
     </main>
   );

@@ -15,7 +15,7 @@ const Items = (props) => {
   console.log("manager", manager);
 
   useEffect(() => {
-    fetch(`http://127.0.0.1:8000/api/item/${manager}/`) // replace with your API endpoint
+    fetch(`http://127.0.0.1:8000/api/item/${manager}/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -30,20 +30,19 @@ const Items = (props) => {
         setError(error);
         setLoading(false);
       });
-  }, []); // Empty dependency array means this useEffect runs once when component mounts
+  }, []);
 
   const handleDelete = (id) => {
-    // Implement your delete logic here
     console.log(`Deleting item with id: ${id}`);
   };
 
   const handleUpdate = (id) => {
-    // Implement your update logic here
     console.log(`Updating item with id: ${id}`);
   };
+
   const handleClick = (id) => {
     console.log(`clicking item with id: ${id}`);
-    fetch(`http://127.0.0.1:8000/api/item/details/${id}/`) // replace with your API endpoint
+    fetch(`http://127.0.0.1:8000/api/item/details/${id}/`)
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -60,18 +59,72 @@ const Items = (props) => {
         setLoading(false);
       });
     navigate("itemdetails");
-    console.log(" props.setcurrentitem(data[0]);", currentitem);
   };
-  // http://127.0.0.1:8000/api/item/details/2/
-  console.log("items", items);
+
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="mt-10">
+        <div className="flex justify-end items-center mr-10">
+          <Link
+            to="./addItems"
+            className="mt-4 bg-gray-900 text-white px-2 py-2 rounded inline-flex items-center"
+          >
+            + Add Items
+          </Link>
+        </div>
+
+        <div className="mx-10 mt-4 mr-10">
+          <table className="w-full bg-white border rounded-lg shadow-lg">
+            <thead>
+              <tr>
+                <th className="border px-4 py-2">Supcode</th>
+                <th className="border px-4 py-2">Code</th>
+                <th className="border px-4 py-2">Name</th>
+                <th className="border px-4 py-2">Unit</th>
+                <th className="border px-4 py-2">Quantity</th>
+                <th className="border px-4 py-2">Total</th>
+                <th className="border px-4 py-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* Stylish Skeleton loader for table rows */}
+              {Array.from({ length: 5 }).map((_, index) => (
+                <tr key={index} className="animate-pulse">
+                  <td className="border px-4 py-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                  </td>
+                  <td className="border px-4 py-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                  </td>
+                  <td className="border px-4 py-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                  </td>
+                  <td className="border px-4 py-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                  </td>
+                  <td className="border px-4 py-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                  </td>
+                  <td className="border px-4 py-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                  </td>
+                  <td className="border px-4 py-2">
+                    <div className="h-4 bg-gray-200 rounded"></div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    );
   }
 
   if (error) {
     return <div>Error: {error.message}</div>;
   }
 
+  // Render the actual table when data is loaded
   return (
     <>
       <div className="mt-10">
@@ -94,8 +147,6 @@ const Items = (props) => {
                 <th className="border px-4 py-2">Unit</th>
                 <th className="border px-4 py-2">Quantity</th>
                 <th className="border px-4 py-2">Total</th>
-
-                {/* Add more column headers as needed */}
                 <th className="border px-4 py-2">Actions</th>
               </tr>
             </thead>
@@ -116,9 +167,7 @@ const Items = (props) => {
       <Routes>
         <Route
           path="/itemdetails"
-          element={
-            <ItemsDetails item={currentitem} />
-          }
+          element={<ItemsDetails item={currentitem} />}
         />
       </Routes>
     </>
