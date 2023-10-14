@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, useNavigate, Link } from "react-router-dom";
 import ItemCard from "./ItemCard";
-import ItemsDetails from "./ItemsDetails";
+// import ItemsDetails from "./ItemsDetails";
 import p1 from "../../../../Assets/p1.jpg";
 import p2 from "../../../../Assets/p2.jpg";
 
@@ -164,12 +164,12 @@ const Items = (props) => {
           </table>
         </div>
       </div>
-      <Routes>
+      {/* <Routes>
         <Route
           path="/itemdetails"
           element={<ItemsDetails item={currentitem} />}
         />
-      </Routes>
+      </Routes> */}
     </>
   );
 };

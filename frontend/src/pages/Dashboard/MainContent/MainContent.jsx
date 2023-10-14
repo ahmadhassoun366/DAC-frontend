@@ -7,7 +7,7 @@ import VehicleManager from "./Stocks/VehicleManager";
 import ShopManager from "./Stocks/ShopManager";
 import Additem from "./Items/additem";
 import Items from "./Items/Items";
-import ItemsDetails from "./Items/ItemsDetails";
+// import ItemsDetails from "./Items/ItemsDetails";
 import Accounting from "./Accounting/Accounting";
 import Units from "./Accounting/Units/Units";
 import Addunit from "./Accounting/Units/Addunit";
