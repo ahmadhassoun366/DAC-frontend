@@ -52,6 +52,7 @@ const AuthProvider = ({ children }) => {
         // Use the user ID as needed
         setUserId(userId);
         localStorage.setItem("userId", userId);
+        localStorage.setItem("isAuthenticated", true.toString());
       }
       if (userId) {
         const managerResponse = await axios.get(
@@ -62,7 +63,7 @@ const AuthProvider = ({ children }) => {
           console.log("manager Logged In Successfully");
           setSeekerId(managerResponse.data[0].id);
           localStorage.setItem("seekerId", managerResponse.data[0].id);
-          toast.success("Successfully LoggedIn!"); 
+          toast.success("Successfully LoggedIn!");
           navigate("/dashboard");
         }
       }

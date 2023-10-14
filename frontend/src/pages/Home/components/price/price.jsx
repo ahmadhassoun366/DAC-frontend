@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const price = () => {
   return (
-    <div className="bg-white dark:bg-gray-900">
+    <div id="pricing" className="bg-white dark:bg-gray-900">
       <div className="container mx-auto px-6 pt-28">
         <div className="xl:-mx-8 xl:flex xl:items-center" style={{ paddingBottom: "6%" }}>
           <div className="flex flex-col items-center xl:mx-8 xl:items-start">
