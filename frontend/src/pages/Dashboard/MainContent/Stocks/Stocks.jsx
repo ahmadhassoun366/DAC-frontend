@@ -4,38 +4,8 @@ import { Link } from "react-router-dom";
 import van from "../../../../Assets/van.png";
 import shop from "../../../../Assets/store.png";
 import storepng from "../../../../Assets/department.png";
+import AddSubSSV from "./AddSubSSV"
 
-const Card = ({ title, description, imgSrc, managerType }) => {
-  return (
-    <div className="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg">
-      <div className="flex justify-center md:justify-end -mt-16">
-        <img
-          className="w-20 h-20 object-cover rounded-full border-2 border-indigo-500"
-          src={imgSrc}
-          alt={title}
-        />
-      </div>
-      <div className="flex flex-col">
-        <div>
-          <h2 className="text-gray-800 text-3xl font-semibold">{title}</h2>
-          <p className="mt-2 text-gray-600">{description}</p>
-        </div>
-        <div className="mt-4 flex">
-          <Link
-            className="bg-cyan-600 text-white px-6 py-2 rounded inline-flex items-center"
-          >
-            Visit
-          </Link>
-          <Link
-            className="ml-auto bg-gray-600 text-white px-6 py-2 rounded inline-flex items-center"
-          >
-            create
-          </Link>
-        </div>
-      </div>
-    </div>
-  );
-};
 const SmallCard = ({ title, description, imgSrc }) => {
   return (
     <div className="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg CustomizedHover" >
@@ -63,6 +33,48 @@ const SmallCard = ({ title, description, imgSrc }) => {
   );
 };
 const Stocks = () => {
+
+  const [isAddModalOpen, setIsAddModalOpen] = useState(true);
+
+  const openAddModal = () => {
+    setIsAddModalOpen(true);
+  };
+
+  const closeAddModal = () => {
+    setIsAddModalOpen(false);
+  };
+  const Card = ({ title, description, imgSrc, managerType }) => {
+    return (
+      <div className="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg">
+        <div className="flex justify-center md:justify-end -mt-16">
+          <img
+            className="w-20 h-20 object-cover rounded-full border-2 border-indigo-500"
+            src={imgSrc}
+            alt={title}
+          />
+        </div>
+        <div className="flex flex-col">
+          <div>
+            <h2 className="text-gray-800 text-3xl font-semibold">{title}</h2>
+            <p className="mt-2 text-gray-600">{description}</p>
+          </div>
+          <div className="mt-4 flex">
+            <Link
+              className="bg-cyan-600 text-white px-6 py-2 rounded inline-flex items-center"
+            >
+              Visit
+            </Link>
+            <Link
+              className="ml-auto bg-gray-600 text-white px-6 py-2 rounded inline-flex items-center"
+              onClick={() => openAddModal()}
+            >
+              create
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  };
   return (
     <div className="px-5">
       <div className="mt-8">
@@ -108,6 +120,12 @@ const Stocks = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div
+        className={`fixed inset-0 z-50 ${isAddModalOpen ? "" : "hidden"}`}
+        style={{ top: "auto", left: "60%" }}
+      >
+        <AddSubSSV closeModal={closeAddModal} />
       </div>
     </div>
   );
