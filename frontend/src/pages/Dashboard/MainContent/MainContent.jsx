@@ -2,9 +2,9 @@ import { React, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import MainDashboard from "./MainDashboard/MainDashboard";
 import Stock from "./Stocks/Stocks";
-import StoreManager from "./Stocks/StoreManager";
-import VehicleManager from "./Stocks/VehicleManager";
-import ShopManager from "./Stocks/ShopManager";
+import StoreDetailPage from "./Stocks/StoreDetailPage";
+import ShopDetailPage from "./Stocks/ShopDetailPage";
+import VehicleDetailPage from "./Stocks/VehicleDetailPage";
 import Additem from "./Items/additem";
 import Items from "./Items/Items";
 // import ItemsDetails from "./Items/ItemsDetails";
@@ -36,15 +36,9 @@ const MainContent = () => {
       <Routes>
         <Route index element={<MainDashboard />} />
         <Route path="Stocks" element={<Stock />} />
-        <Route
-          path="Stocks/stock/:stockName/store"
-          element={<StoreManager />}
-        />
-        <Route path="Stocks/stock/:shopName/shop" element={<ShopManager />} />
-        <Route
-          path="Stocks/stock/:vehicleName/vehicle"
-          element={<VehicleManager />}
-        />
+         <Route path="Stocks/store/:storeId" element={<StoreDetailPage/>} />
+        <Route path="Stocks/shop/:shopId" element={<ShopDetailPage/>} />
+        <Route path="Stocks/vehicle/:vehicleId" element={<VehicleDetailPage/>} />
         <Route path="accounting" element={<Accounting />} />
         <Route path="Managment" element={<Managment />} />
         <Route path="Managment/tva" element={<TVAs />} />
