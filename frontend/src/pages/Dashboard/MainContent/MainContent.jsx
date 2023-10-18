@@ -14,6 +14,8 @@ import Addunit from "./Accounting/Units/Addunit";
 import Subunits from "./Accounting/Subunits/Subunits";
 import Managment from "./Managment/Managment";
 import TVAs from "./Managment/TVAs/TVAs";
+import Sell from "./Accounting/Sell/Sell";
+import Purchase from "./Accounting/Purchase/Purchase";
 const MainContent = () => {
   const [itemID, setitemID] = useState(null);
 
@@ -36,10 +38,12 @@ const MainContent = () => {
       <Routes>
         <Route index element={<MainDashboard />} />
         <Route path="Stocks" element={<Stock />} />
-         <Route path="Stocks/store/:storeId" element={<StoreDetailPage/>} />
-        <Route path="Stocks/shop/:shopId" element={<ShopDetailPage/>} />
-        <Route path="Stocks/vehicle/:vehicleId" element={<VehicleDetailPage/>} />
+        <Route path="Stocks/store/:storeId" element={<StoreDetailPage />} />
+        <Route path="Stocks/shop/:shopId" element={<ShopDetailPage />} />
+        <Route path="Stocks/vehicle/:vehicleId" element={<VehicleDetailPage />} />
         <Route path="accounting" element={<Accounting />} />
+        <Route path="accounting/sell" element={<Sell />} />
+        <Route path="accounting/purchase" element={<Purchase />} />
         <Route path="Managment" element={<Managment />} />
         <Route path="Managment/tva" element={<TVAs />} />
         <Route path="accounting/units" element={<Units />} />
@@ -47,6 +51,7 @@ const MainContent = () => {
         <Route path="accounting/Subunits" element={<Subunits />} />
         <Route path="Items/*" element={<Items />} />
         <Route path="Items/addItems" element={<Additem />} />
+
       </Routes>
     </main>
   );
