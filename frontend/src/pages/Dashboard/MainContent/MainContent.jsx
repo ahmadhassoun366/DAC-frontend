@@ -7,6 +7,7 @@ import ShopDetailPage from "./Stocks/ShopDetailPage";
 import VehicleDetailPage from "./Stocks/VehicleDetailPage";
 import Additem from "./Items/additem";
 import Items from "./Items/Items";
+import SelectItemPage from "./Items/SelectedItemPage";
 // import ItemsDetails from "./Items/ItemsDetails";
 import Accounting from "./Accounting/Accounting";
 import Units from "./Accounting/Units/Units";
@@ -36,9 +37,12 @@ const MainContent = () => {
       <Routes>
         <Route index element={<MainDashboard />} />
         <Route path="Stocks" element={<Stock />} />
-         <Route path="Stocks/store/:storeId" element={<StoreDetailPage/>} />
-        <Route path="Stocks/shop/:shopId" element={<ShopDetailPage/>} />
-        <Route path="Stocks/vehicle/:vehicleId" element={<VehicleDetailPage/>} />
+        <Route path="Stocks/store/:storeId" element={<StoreDetailPage />} />
+        <Route path="Stocks/shop/:shopId" element={<ShopDetailPage />} />
+        <Route
+          path="Stocks/vehicle/:vehicleId"
+          element={<VehicleDetailPage />}
+        />
         <Route path="accounting" element={<Accounting />} />
         <Route path="Managment" element={<Managment />} />
         <Route path="Managment/tva" element={<TVAs />} />
@@ -46,6 +50,8 @@ const MainContent = () => {
         <Route path="accounting/units/addunit" element={<Addunit />} />
         <Route path="accounting/Subunits" element={<Subunits />} />
         <Route path="Items/*" element={<Items />} />
+        <Route path="selectItem" element={<SelectItemPage/>} />
+
         <Route path="Items/addItems" element={<Additem />} />
       </Routes>
     </main>

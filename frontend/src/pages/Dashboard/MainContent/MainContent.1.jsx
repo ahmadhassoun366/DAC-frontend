@@ -46,6 +46,7 @@ export const MainContent1 = () => {
         <Route path="accounting/units/addunit" element={<Addunit />} />
         <Route path="accounting/Subunits" element={<Subunits />} />
         <Route path="Stock/Items/*" element={<Items />} />
+        
         <Route path="Stock/Items/addItems" element={<Additem />} />
       </Routes>
     </main>
