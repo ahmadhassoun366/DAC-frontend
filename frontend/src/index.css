@@ -32,3 +32,11 @@ code {
   margin-top: 5%;
   margin-bottom: 15%;
 }
+
+.InCardContainer {
+  border: 1px solid red;
+  padding: 1%;
+  border: 1px dotted grey;
+  border-radius: 12px;
+  background-color: lightgrey;
+}
