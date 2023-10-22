@@ -35,7 +35,7 @@ const SelectItemPage = ({shopId}) => {
     const handleAddItem = () => {
         const addedItem = addItem(newItem);
         setItems([...items, addedItem]);
-        setNewItem({ name: '', description: '' });
+        setNewItem({ name: '', description: '', price: 0 });
     };
 
     return (

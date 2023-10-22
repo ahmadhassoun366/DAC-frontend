@@ -1,10 +1,10 @@
 // itemsAPI.js
 
 let items = [
-    { id: 1, name: 'Item 1', description: 'Description for Item 1' },
-    { id: 2, name: 'Item 2', description: 'Description for Item 2' },
-    { id: 3, name: 'Item 3', description: 'Description for Item 3' },
-    { id: 4, name: 'Item 4', description: 'Description for Item 4' },
+    { id: 1, name: 'Item 1', description: 'Description for Item 1', price: 10},
+    { id: 2, name: 'Item 2', description: 'Description for Item 2', price: 20 },
+    { id: 3, name: 'Item 3', description: 'Description for Item 3', price: 30 },
+    { id: 4, name: 'Item 4', description: 'Description for Item 4', price: 40 },
     // ... add more items as needed
 ];
 
