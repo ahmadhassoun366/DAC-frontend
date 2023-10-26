@@ -1,25 +1,93 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import money from "../../../../Assets/vat.png";
-
-
+import React, { useState } from "react";
+import AccountComponent from "./components/account.component";
+import General from "./components/general.component";
+import CustomerSettings from "./components/customer.component";
+import Salesman from "./components/salesman.component";
+import ItemsSettings from "./components/items.component";
+import Categories from "./components/categories.component";
+import Invoice from "./components/invoice.component";
 
 const Managment = () => {
-    return (
-        <div class="pt-6 px-4">
-            <div class="flex justify-around p-10 gap-8">
-                <div class="max-w-md py-4 px-8 bg-white shadow-lg rounded-lg">
-                    <div class="flex justify-center md:justify-end -mt-16">
-                        <img class="w-20 h-20 object-cover rounded-full border-2 border-indigo-500" src={money} alt="" />
-                    </div>
-                    <div>
-                        <h2 class="text-gray-800 text-3xl font-semibold">TVA</h2>
-                        <p class="mt-2 text-gray-600">Manage your company TVA, Add TVA ,Delete and edit  </p>
-                        <Link to="./TVA" class="mt-4 bg-cyan-600 text-white px-6 py-2 rounded inline-flex items-center">Visit</Link>
-                    </div>
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeComponent, setActiveComponent] = useState(null);
+
+  const components = {
+    customers: <CustomerSettings />,
+    salesman: <Salesman />,
+    items: <ItemsSettings />,
+    categories: <Categories />,
+    accounts: <AccountComponent />,
+    invoice: <Invoice />,
+    general: <General />,
+    softwave: <div>Softwave Content</div>,
+  };
+
+  return (
+    <main className="pt-6 px-4">
+      <header className="grid grid-cols-4">
+        <button className="bg-blue-500 text-white px-4 py-2 mr-2 hover:bg-blue-600 rounded">
+          Main files
+        </button>
+        <button className="bg-blue-500 text-white px-4 py-2 mr-2 hover:bg-blue-600 rounded">
+          Reports
+        </button>
+        <button className="bg-blue-500 text-white px-4 py-2 mr-2 hover:bg-blue-600 rounded">
+          Utilities
+        </button>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-blue-500 text-white px-4 py-2 mr-2 hover:bg-blue-600 rounded"
+        >
+          Setup
+        </button>
+      </header>
+      <section>
+        {isModalOpen && (
+          <div className="fixed z-10 inset-0 overflow-y-auto mt-20">
+            <div className="flex items-center justify-center min-h-screen pt-4 px-4 pb-20">
+              <div className="fixed inset-0 transition-opacity">
+                <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+              </div>
+
+              <div className="bg-white rounded-lg w-[800px] overflow-hidden shadow-xl transform transition-all ">
+                <div className="flex justify-between items-center p-4 border-b border-gray-200">
+                  {[
+                    "customers",
+                    "salesman",
+                    "items",
+                    "categories",
+                    "accounts",
+                    "invoice",
+                    "general",
+                    "softwave",
+                  ].map((key) => (
+                    <button
+                      key={key}
+                      className={`text-sm px-3 py-2 ${
+                        activeComponent === key
+                          ? "bg-blue-500 text-white rounded"
+                          : "text-blue-500"
+                      }`}
+                      onClick={() => setActiveComponent(key)}
+                    >
+                      {key.charAt(0).toUpperCase() + key.slice(1)}
+                    </button>
+                  ))}
+                  <button
+                    className="ml-4 bg-red-500 text-white rounded-full w-6 h-6 leading-none text-xs flex items-center justify-center"
+                    onClick={() => setIsModalOpen(false)}
+                  >
+                    X
+                  </button>
                 </div>
+                <div className="p-4">{components[activeComponent]}</div>
+              </div>
             </div>
-        </div>
-    )
-}
+          </div>
+        )}
+      </section>
+    </main>
+  );
+};
+
 export default Managment;

@@ -81,72 +81,93 @@ const Stocks = () => {
   }) => (
     <Link
       to={`${entityType}/${id}`}
-      className="w-full py-4 px-8 bg-white shadow-md transition-shadow duration-300 ease-in-out rounded-lg m-2 border border-gray-200 relative group cursor-pointer hover:bg-gray-100"
+      className="relative w-full p-5 bg-transparent hover:bg-gray-50 transition-all duration-300 ease-in-out rounded-lg m-3 border-2 border-gray-300 hover:border-gray-400 cursor-pointer"
     >
-      <Link className="block hover:text-blue-600 group-hover:blur-sm">
-        <div className="flex justify-center mb-4">
-          <img
-            className="w-20 h-20 object-cover rounded-full border-2 border-gray-900"
-            src={imgSrc}
-            alt={title}
-          />
-        </div>
-        <h2 className="text-center text-gray-800 text-2xl font-semibold">
-          {title}
-        </h2>
-      </Link>
+      <img
+        className="absolute top-0 left-0 transform -translate-x-1 -translate-y-1/2 w-20 h-20 object-cover rounded-full shadow-md border-4 border-white hover:shadow-lg transition-shadow duration-300 ease-in-out"
+        src={imgSrc}
+        alt={title}
+      />
 
-      {/* Details that appear on hover */}
-      <div className="absolute top-0 left-0 right-0 bottom-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out">
-        <div className="grid grid-cols-2 gap-2 bg-gray-50 p-4 rounded shadow-lg w-3/4 h-3/4">
-          <div className="text-sm text-gray-600 font-medium">Inventory:</div>
-          <div className="text-sm text-gray-800">{inventoryAccountNumber}</div>
-          <div className="text-sm text-gray-600 font-medium">Assets:</div>
-          <div className="text-sm text-gray-800">{assetsAccountNumber}</div>
-          <div className="text-sm text-gray-600 font-medium">Address:</div>
-          <div className="text-sm text-gray-800">{address}</div>
+      <div className="flex items-center justify-center space-x-6 ">
+        <div>
+          <h2 className="text-gray-800 text-2xl font-medium mb-2 border-b border-gray-300 pb-2 text-center">
+            {title}
+          </h2>
+
+          <div className="grid grid-cols-2 gap-4 text-gray-700 space-x-5 py-5">
+            <div className="pt-2">
+              <p className="text-xs uppercase tracking-wide font-semibold text-gray-500 mb-1">
+                Inventory
+              </p>
+              <span className="text-base text-gray-800">
+                {inventoryAccountNumber}
+              </span>
+            </div>
+            <div className="pt-2">
+              <p className="text-xs uppercase tracking-wide font-semibold text-gray-500 mb-1">
+                Assets
+              </p>
+              <span className="text-base text-gray-800">
+                {assetsAccountNumber}
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </Link>
   );
 
   return (
-    <div className="px-5">
-      <div className="mt-8">
+    <div className="p-8 bg-gray-100">
+      <div className="container mx-auto bg-white p-8 rounded-lg shadow-md">
         <div className="mb-10">
-          <div className="flex justify-around px-10 gap-8">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold mb-6">Manage Stocks</h2>
-              <button
-                className="bg-cyan-600 text-white px-6 py-2 rounded m-2"
-                onClick={() => {
-                  setShowModal(true);
-                  setCurrentType("Store");
-                }}
-              >
-                Create Store
-              </button>
-              <button
-                className="bg-cyan-600 text-white px-6 py-2 rounded m-2"
-                onClick={() => {
-                  setShowModal(true);
-                  setCurrentType("Shop");
-                }}
-              >
-                Create Shop
-              </button>
-              <button
-                className="bg-cyan-600 text-white px-6 py-2 rounded m-2"
-                onClick={() => {
-                  setShowModal(true);
-                  setCurrentType("Vehicle");
-                }}
-              >
-                Create Vehicle
-              </button>
+          <div className="flex justify-between items-center mb-6">
+            <div>
+              <h1 className="text-2xl font-semibold mb-4">
+                Available total amount of inventory: $1500
+              </h1>
+              <h1 className="text-2xl font-semibold text-cyan-600">
+                Beginning inventory: $1500
+              </h1>
+            </div>
+            <div className="flex items-center space-x-4">
+              <span className="text-xl font-semibold">Current Year:</span>
+              <h1 className="text-xl font-semibold text-gray-600">2023</h1>
             </div>
           </div>
-          <div className="flex mt-6 gap-6">
+
+          <div className="flex justify-center space-x-6 my-6">
+            <button
+              className="bg-cyan-600 text-white px-6 py-2 rounded-full transition duration-300 ease-in-out transform hover:bg-cyan-700 focus:outline-none"
+              onClick={() => {
+                setShowModal(true);
+                setCurrentType("Store");
+              }}
+            >
+              Create Store
+            </button>
+            <button
+              className="bg-cyan-600 text-white px-6 py-2 rounded-full transition duration-300 ease-in-out transform hover:bg-cyan-700 focus:outline-none"
+              onClick={() => {
+                setShowModal(true);
+                setCurrentType("Shop");
+              }}
+            >
+              Create Shop
+            </button>
+            <button
+              className="bg-cyan-600 text-white px-6 py-2 rounded-full transition duration-300 ease-in-out transform hover:bg-cyan-700 focus:outline-none"
+              onClick={() => {
+                setShowModal(true);
+                setCurrentType("Vehicle");
+              }}
+            >
+              Create Vehicle
+            </button>
+          </div>
+
+          <div className="grid grid-cols-3 gap-6">
             {/* Render Created Stores */}
             <div className="flex-1 border border-gray-400 rounded p-4">
               <h3 className="text-2xl text-center font-bold mb-4">Stores</h3>
@@ -205,9 +226,11 @@ const Stocks = () => {
             </div>
           </div>
           {showModal && (
-            <div className="fixed inset-0 flex items-center justify-center z-50">
-              <div className="bg-white p-6 rounded shadow-lg">
-                <h3 className="mb-4">Create {currentType}</h3>
+            <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40">
+              <div className="bg-white p-6 rounded-lg shadow-lg w-1/2">
+                <h3 className="text-xl mb-4 font-semibold">
+                  Create {currentType}
+                </h3>
                 <input
                   className="border p-2 rounded mb-2 w-full"
                   placeholder="Title"
@@ -232,15 +255,20 @@ const Stocks = () => {
                   value={assetsAccountNumber}
                   onChange={(e) => setAssetsAccountNumber(e.target.value)}
                 />
-                <button
-                  className="bg-blue-600 text-white px-6 py-2 rounded"
-                  onClick={createEntity}
-                >
-                  Submit
-                </button>
-                <button className="ml-4" onClick={() => setShowModal(false)}>
-                  Cancel
-                </button>
+                <div className="mt-4 flex justify-end space-x-4">
+                  <button
+                    className="bg-blue-600 text-white px-6 py-2 rounded transition duration-300 ease-in-out transform hover:bg-blue-700 focus:outline-none"
+                    onClick={createEntity}
+                  >
+                    Submit
+                  </button>
+                  <button
+                    className="text-blue-600 hover:text-blue-800 focus:outline-none"
+                    onClick={() => setShowModal(false)}
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
           )}

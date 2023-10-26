@@ -91,116 +91,128 @@ const ShopDetailPage = () => {
   }
 
   return (
-    <section className="px-10">
-      <div className="flex justify-end items-center mr-10 gap-10 transform transition-transform ">
-        <button
-          className="mt-4 bg-gray-900 text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-200 transition-all duration-300 transform"
-          onClick={() => setShowModal(true)}
-        >
-          Select Items
-        </button>
-      </div>
+    <section className="px-10 py-5 bg-gray-50">
+    <header className="mb-6">
+      <h1 className="text-3xl font-bold text-gray-700">{shop.title}</h1>
+    </header>
 
-      {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-40 transition-opacity duration-300 ease-in-out">
-          <div className="bg-white rounded-xl shadow-2xl p-6 w-3/4 md:w-2/3 h-3/4 transform transition-transform duration-500 ease-in-out scale-90 hover:scale-100">
-            <button
-              className="absolute top-3 right-3 bg-red-600 text-white px-3 py-1 rounded-full hover:bg-red-700 transition-all duration-300"
-              onClick={() => setShowModal(false)}
-            >
-              ✕
-            </button>
-            <ul className="mt-10 space-y-4">
-              {allItems.map((item) => (
-                <li
-                  key={item.id}
-                  className="flex justify-between items-center p-3 bg-gray-900 rounded-xl shadow-md hover:bg-gray-200 transition-all duration-300 transform hover:scale-105"
-                >
-                  <span className="w-1/3 font-semibold text-white">{item.name}</span>
-                  <span className="w-1/3 text-sm text-white">
-                    {item.description}
-                  </span>
-                  <span className="w-1/4 text-gray-300">${item.price}</span>
-                  <button
-                    className="bg-green-600 text-white px-3 py-1 rounded-full hover:bg-green-700 transition-all duration-300"
-                    onClick={() => handleSelectItem(item)}
-                  >
-                    Select
-                  </button>
-                </li>
-              ))}
-            </ul>
-            <div className="mt-5 flex gap-3">
-              <input
-                type="text"
-                placeholder="Enter new item name"
-                value={newItemName}
-                onChange={(e) => setNewItemName(e.target.value)}
-                className="flex-1 border-2 rounded-xl p-2 shadow-sm hover:border-gray-500 transition-all duration-300"
-              />
-              <input
-                type="text"
-                placeholder="Enter item description"
-                value={newItemDescription}
-                onChange={(e) => setNewItemDescription(e.target.value)}
-                className="flex-1 border-2 rounded-xl p-2 shadow-sm hover:border-gray-500 transition-all duration-300"
-              />
-              <input
-                type="text"
-                placeholder="Enter item price"
-                value={newItemPrice}
-                onChange={(e) => setNewItemPrice(e.target.value)}
-                className="flex-1 border-2 rounded-xl p-2 shadow-sm hover:border-gray-500 transition-all duration-300"
-              />
-              <button
-                className="bg-blue-700 text-white px-4 py-2 rounded-xl shadow-lg hover:bg-blue-600 transition-all duration-300 transform hover:-translate-y-1"
-                onClick={(e) => handleAddItem(e)}
+    <div className="flex justify-end items-center mb-6 gap-6">
+      <button
+        className="bg-gray-800 text-white px-6 py-2 rounded-md shadow-sm hover:bg-gray-900 transition-all duration-300 transform hover:scale-105 focus:outline-none"
+        onClick={() => setShowModal(true)}
+      >
+        Manage Items
+      </button>
+    </div>
+
+    {showModal && (
+      <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-60 transition-opacity duration-300 ease-in-out">
+        <div className="bg-white rounded-xl shadow-2xl p-8 w-4/5 md:w-3/5 lg:w-1/2 transform transition-transform duration-500 ease-in-out scale-95 hover:scale-100">
+          <button
+            className="absolute top-4 right-4 bg-gray-500 text-white px-2 py-1 rounded-full hover:bg-gray-600 transition-all duration-300 focus:outline-none"
+            onClick={() => setShowModal(false)}
+          >
+            ✕
+          </button>
+          <h2 className="text-2xl font-semibold mb-6 text-gray-800">
+            Select an Item
+          </h2>
+          <ul className="mt-2 space-y-4 overflow-y-auto max-h-60">
+            {allItems.map((item) => (
+              <li
+                key={item.id}
+                className="flex justify-between items-center p-3 bg-gray-200 rounded-xl shadow-sm hover:bg-gray-300 transition-all duration-300 transform hover:scale-105"
               >
-                + Add Item
-              </button>
-            </div>
+                <span className="w-1/3 font-medium text-gray-700">
+                  {item.name}
+                </span>
+                <span className="w-1/3 text-sm text-gray-600">
+                  {item.description}
+                </span>
+                <span className="w-1/4 text-gray-800">${item.price}</span>
+                <button
+                  className="bg-green-600 text-white px-3 py-1 rounded-full hover:bg-green-700 transition-all duration-300 focus:outline-none"
+                  onClick={() => handleSelectItem(item)}
+                >
+                  Select
+                </button>
+              </li>
+            ))}
+          </ul>
+          <div className="mt-6 flex gap-4">
+            <input
+              type="text"
+              placeholder="Item Name"
+              value={newItemName}
+              onChange={(e) => setNewItemName(e.target.value)}
+              className="flex-1 border-2 rounded-xl p-2 shadow-sm hover:border-gray-500 transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+            <input
+              type="text"
+              placeholder="Description"
+              value={newItemDescription}
+              onChange={(e) => setNewItemDescription(e.target.value)}
+              className="flex-1 border-2 rounded-xl p-2 shadow-sm hover:border-gray-500 transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+            <input
+              type="text"
+              placeholder="Price"
+              value={newItemPrice}
+              onChange={(e) => setNewItemPrice(e.target.value)}
+              className="flex-1 border-2 rounded-xl p-2 shadow-sm hover:border-gray-500 transition-all duration-300 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            />
+            <button
+              className="bg-blue-700 text-white px-4 py-2 rounded-xl shadow-lg hover:bg-blue-600 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none"
+              onClick={(e) => handleAddItem(e)}
+            >
+              Add
+            </button>
           </div>
         </div>
-      )}
+      </div>
+    )}
 
-      <div className="max-w-xl mx-auto mt-10 bg-gray-100 p-6 rounded-xl shadow-2xl transform transition-all duration-300 hover:scale-105">
-        <h1 className="text-3xl mb-5 text-center text-gray-500">
-          {shop.title}
-        </h1>
-        <p className="mt-2 text-gray-900">
-          Inventory Account Number: {shop.inventoryAccountNumber}
-        </p>
-        <p className="mt-2 text-gray-900">
-          Assets Account Number: {shop.assetsAccountNumber}
-        </p>
-        <p className="mt-2 text-gray-900">Address: {shop.address}</p>
+<div className="bg-white p-6 rounded-lg shadow-md">
+      <h2 className="text-xl font-medium mb-4 text-gray-800">Store Information</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <p><strong>Inventory Account Number:</strong> {shop.inventoryAccountNumber}</p>
+        <p><strong>Assets Account Number:</strong> {shop.assetsAccountNumber}</p>
+        <p><strong>Address:</strong> {shop.address}</p>
+      </div>
+    </div>
+
+    <div className="mt-8">
+      <h2 className="text-xl font-medium mb-4 text-gray-800">Selected Items</h2>
+      <div className="flex justify-between items-center mb-4">
+        <span className="text-lg font-bold text-gray-700">Total Price:</span>
+        <span className="text-xl text-gray-600 font-bold">${totalPrice.toFixed(2)}</span>
       </div>
 
-      <div className="mt-5">
-        <div className="px-10 flex justify-between items-center my-5 text-lg ">
-          <h2 className="font-bold  text-gray-900">Selected Items:</h2>
-          <h2 className="text-gray-600 font-bold">
-            Total Price: ${totalPrice.toFixed(2)}
-          </h2>
-        </div>
-        <ul className="space-y-3 hover:text-gray-800">
-          {selectedItems.map((item) => (
-            <li
-              key={item.id}
-              className="bg-gray-900 p-4 rounded-xl shadow-md transition-all duration-300 hover:bg-gray-300 "
-            >
-              <h2 className="font-semibold text-gray-200 ">
-                Name: {item.name}
-              </h2>
-              <h2 className="text-sm text-gray-100">
-                Description: {item.description}
-              </h2>
-              <h2 className="text-gray-100">Price: ${item.price}</h2>
-            </li>
-          ))}
-        </ul>
+      <div className="bg-white p-6 rounded-lg shadow-md">
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="border px-4 py-2">Name</th>
+              <th className="border px-4 py-2">Description</th>
+              <th className="border px-4 py-2">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {selectedItems.map((item) => (
+              <tr
+                key={item.id}
+                className="hover:bg-gray-100 transition-all duration-200"
+              >
+                <td className="border px-4 py-2 text-gray-700">{item.name}</td>
+                <td className="border px-4 py-2 text-gray-600">{item.description}</td>
+                <td className="border px-4 py-2 text-gray-700">${item.price}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-    </section>
+    </div>
+  </section>
   );
 };
 
