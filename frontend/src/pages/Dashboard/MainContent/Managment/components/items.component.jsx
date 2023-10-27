@@ -8,7 +8,7 @@ function ItemsSettings() {
     const [itemInventoryBy, setItemInventoryBy] = useState("");
 
     return (
-        <div className="min-h-screen flex items-start justify-center bg-gray-200 p-6">
+        <div className="flex items-start justify-center p-6">
             <div className="bg-white p-6 rounded shadow-md w-96">
                 <div className="mb-4">
                     <label className="block text-gray-700 mb-2">PUR Item Currency</label>

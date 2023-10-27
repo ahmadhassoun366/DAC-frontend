@@ -137,7 +137,7 @@ const StoreDetailPage = () => {
                 </li>
               ))}
             </ul>
-            <div className="mt-6 flex gap-4">
+            <div className="mt-6 grid grid-cols-3 gap-4">
               <input
                 type="text"
                 placeholder="Item Name"

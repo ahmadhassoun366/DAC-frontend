@@ -2,7 +2,7 @@ import React from 'react';
 
 const AccountComponent = () => {
   return (
-    <div className="bg-white p-6 rounded-md shadow-md w-full max-w-3xl mx-auto">
+    <div className="bg-white p-10 m-10 rounded-md shadow-md w-full max-w-3xl mx-auto">
       <h2 className="text-xl font-bold mb-4">Account Management</h2>
 
       <div className="grid grid-cols-2 gap-4">

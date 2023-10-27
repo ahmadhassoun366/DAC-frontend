@@ -6,7 +6,7 @@ function Salesman() {
     const [salesmanExpenses, setSalesmanExpenses] = useState("");
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-200">
+        <div className="flex items-center justify-center p-10">
             <div className="bg-white p-6 rounded shadow-md w-96">
                 <div className="mb-4">
                     <label className="block text-gray-700 mb-2">Currency</label>
