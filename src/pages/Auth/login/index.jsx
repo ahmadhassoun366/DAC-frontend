@@ -28,7 +28,7 @@ const Index = () => {
     e.preventDefault();
     try {
       // Call your login function passing email and password
-      await login(email, password);
+      // await login(email, password);
       navigate('/dashboard')
 
     } catch (error) {
