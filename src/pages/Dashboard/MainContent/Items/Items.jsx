@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Routes, Route, useNavigate, Link } from "react-router-dom";
+import {useNavigate, Link } from "react-router-dom";
 import ItemCard from "./ItemCard";
-// import ItemsDetails from "./ItemsDetails";
-import p1 from "../../../../Assets/p1.jpg";
-import p2 from "../../../../Assets/p2.jpg";
+
 
 const Items = (props) => {
   const navigate = useNavigate();
@@ -12,7 +10,6 @@ const Items = (props) => {
   const [loading, setLoading] = useState(true);
   const [currentitem, setcurrentitem] = useState(0);
   const manager = localStorage.getItem("userId");
-  console.log("manager", manager);
 
   useEffect(() => {
     fetch(`http://127.0.0.1:8000/api/item/${manager}/`)
@@ -30,7 +27,7 @@ const Items = (props) => {
         setError(error);
         setLoading(false);
       });
-  }, []);
+  }, [manager]);
 
   const handleDelete = (id) => {
     console.log(`Deleting item with id: ${id}`);

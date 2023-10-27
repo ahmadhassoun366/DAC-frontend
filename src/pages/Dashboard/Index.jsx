@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import NavBar from "./NavBar/Navbar";
 import SideBar from "./SideBar/SideBar";
 import MainContent from "./MainContent/MainContent"

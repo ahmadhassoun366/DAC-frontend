@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 const Addunit = (props) => {
@@ -67,7 +66,7 @@ const Addunit = (props) => {
     useEffect(() => {
         fetchSubUnits();
         console.log("heeeeeeeeeeeeeeeeeeeeee", Subunitlist)
-    }, []);
+    }, [Subunitlist]);
     return (
         <div className="py-6 px-4">
             <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">

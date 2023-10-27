@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import jwt_decode from "jwt-decode";
-import axios from "axios";
 
 const Additem = () => {
-  const history = useNavigate();
   const [supcode, setSupCode] = useState("");
   const [code, setCode] = useState("");
   const [name, setName] = useState("");

@@ -1,7 +1,7 @@
 import { React, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 const NavBar = () => {
   const navigate = useNavigate();
   const { logout } = useContext(AuthContext);
@@ -9,9 +9,8 @@ const NavBar = () => {
   const handleLogout = async () => {
     try {
       await logout();
-      navigate('/');
+      navigate("/");
       toast.success("Logout Successfully");
-
     } catch (error) {
       toast.error("Logout error");
     }
@@ -121,12 +120,15 @@ const NavBar = () => {
               </svg>
             </button>
             <div class="hidden lg:flex items-center ">
-              <button class="text-base font-bold text-white mr-5 hover:bg-white px-3 py-2 rounded-lg hover:text-gray-900" onClick={() => handleLogout()}>
+              <button
+                class="text-base font-bold text-white mr-5 hover:bg-white px-3 py-2 rounded-lg hover:text-gray-900"
+                onClick={() => handleLogout()}
+              >
                 Logout
               </button>
             </div>
             <a
-              href="#"
+              href="/"
               class="hidden sm:inline-flex ml-5 text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center items-center mr-3"
             >
               <svg

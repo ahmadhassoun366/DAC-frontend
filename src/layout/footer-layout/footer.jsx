@@ -30,19 +30,19 @@ const footer = () => {
 
             <div className="mt-5 flex flex-col items-start space-y-2">
               <Link
-                href="#"
+          
                 className="text-gray-200 transition-colors duration-300 hover:text-blue-500 hover:underline"
               >
                 Home
               </Link>
               <Link
-                href="#"
+          
                 className="text-gray-200 transition-colors duration-300 hover:text-blue-500 hover:underline"
               >
                 Who We Are
               </Link>
               <Link
-                href="#"
+          
                 className="text-gray-200 transition-colors duration-300 hover:text-blue-500 hover:underline"
               >
                 Our Philosophy
@@ -55,19 +55,19 @@ const footer = () => {
 
             <div className="mt-5 flex flex-col items-start space-y-2">
               <Link
-                href="#"
+          
                 className="text-gray-200 transition-colors duration-300 hover:text-blue-500 hover:underline"
               >
                 Retail & E-Commerce
               </Link>
               <Link
-                href="#"
+          
                 className="text-gray-200 transition-colors duration-300 hover:text-blue-500 hover:underline"
               >
                 Information Technology
               </Link>
               <Link
-                href="#"
+          
                 className="text-gray-200 transition-colors duration-300 hover:text-blue-500 hover:underline"
               >
                 Finance & Insurance
@@ -80,7 +80,7 @@ const footer = () => {
 
         <div className="flex items-center justify-between">
           <Link
-            href="#"
+      
             className="text-2xl font-bold text-gray-100 transition-colors duration-300 hover:text-white "
           >
             DAC
@@ -88,7 +88,7 @@ const footer = () => {
 
           <div className="-mx-2 flex">
             <Link
-              href="#"
+        
               className="mx-2 text-gray-400 transition-colors duration-300 hover:text-blue-500"
               aria-label="Reddit"
             >
@@ -103,7 +103,7 @@ const footer = () => {
             </Link>
 
             <Link
-              href="#"
+        
               className="mx-2 text-gray-400 transition-colors duration-300 hover:text-blue-500"
               aria-label="Facebook"
             >
@@ -118,7 +118,7 @@ const footer = () => {
             </Link>
 
             <Link
-              href="#"
+        
               className="mx-2 text-gray-400 transition-colors duration-300 hover:text-blue-500"
               aria-label="Github"
             >

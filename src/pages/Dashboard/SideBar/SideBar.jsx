@@ -1,8 +1,7 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
-  const navigate = useNavigate();
   return (
     <aside
       id="sidebar"
@@ -33,7 +32,7 @@ const SideBar = () => {
                       type="text"
                       name="email"
                       id="mobile-search"
-                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 focus:ring-cyan-600 block w-full pl-10 p-2.5"
+                      class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-cyan-600 block w-full pl-10 p-2.5"
                       placeholder="Search"
                     />
                   </div>
@@ -58,7 +57,7 @@ const SideBar = () => {
               </li>
 
               <li>
-                <a
+                <Link
                   href="#"
                   target="_blank"
                   class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
@@ -76,10 +75,10 @@ const SideBar = () => {
                   <span class="bg-gray-200 text-gray-800 ml-3 text-sm font-medium inline-flex items-center justify-center px-2 rounded-full">
                     1 new
                   </span>
-                </a>
+                </Link>
               </li>
               <li>
-                <a
+                <Link
                   href="#"
                   class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 flex items-center p-2 group "
                 >
@@ -96,7 +95,7 @@ const SideBar = () => {
                     ></path>
                   </svg>
                   <span class="ml-3 flex-1 whitespace-nowrap">Users</span>
-                </a>
+                </Link>
               </li>
               <li>
                 <Link
@@ -176,7 +175,7 @@ const SideBar = () => {
               </li>
             </ul>
             <div class="space-y-2 pt-2">
-              <a
+              <Link
                 href="#"
                 class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2"
               >
@@ -196,8 +195,8 @@ const SideBar = () => {
                   ></path>
                 </svg>
                 <span class="ml-4">Upgrade to Pro</span>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 target="_blank"
                 class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2"
@@ -216,8 +215,8 @@ const SideBar = () => {
                   ></path>
                 </svg>
                 <span class="ml-3">Documentation</span>
-              </a>
-              <a
+              </Link>
+              <Link
                 href="#"
                 target="_blank"
                 class="text-base text-gray-900 font-normal rounded-lg hover:bg-gray-100 group transition duration-75 flex items-center p-2"
@@ -231,7 +230,7 @@ const SideBar = () => {
                   <path d="M7 3a1 1 0 000 2h6a1 1 0 100-2H7zM4 7a1 1 0 011-1h10a1 1 0 110 2H5a1 1 0 01-1-1zM2 11a2 2 0 012-2h12a2 2 0 012 2v4a2 2 0 01-2 2H4a2 2 0 01-2-2v-4z"></path>
                 </svg>
                 <span class="ml-3">Profile</span>
-              </a>
+              </Link>
 
               <Link
                 to="/"
