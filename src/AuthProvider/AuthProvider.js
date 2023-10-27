@@ -13,13 +13,12 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   // const [token, setToken] = useState(null);
   const [refreshToken, setRefreshToken] = useState(null);
-  const [accessToken, setAccessToken] = useState(null);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [ setAccessToken] = useState(null);
+  const [email, ] = useState("");
+  const [password,] = useState("");
   const [error, setError] = useState("");
-  const [userId, setUserId] = useState("");
-  const [seekerId, setSeekerId] = useState("");
-  const [recruiterId, setRecruiterId] = useState("");
+  const [setUserId] = useState("");
+  const [ setSeekerId] = useState("");
 
   useEffect(() => {
     console.log("isAuthenticated:", isAuthenticated);

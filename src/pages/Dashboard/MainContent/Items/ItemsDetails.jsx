@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+
 const ItemsDetails = ({ item, onEdit, onDelete }) => {
 
   const [supcode, setSupcode] = useState();
@@ -200,9 +202,9 @@ const ItemsDetails = ({ item, onEdit, onDelete }) => {
         <div className="w-full">
           <ul className="flex border-b">
             <li className="-mb-px mr-2 last:mr-0 flex-auto text-center">
-              <a className="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-white bg-cyan-700">
+              <Link className="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-white bg-cyan-700">
                 Details
-              </a>
+              </Link>
             </li>
           </ul>
 

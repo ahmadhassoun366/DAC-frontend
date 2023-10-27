@@ -5,7 +5,7 @@ const SideBar = () => {
   return (
     <aside
       id="sidebar"
-      class="fixed hidden z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
+      class="fixed  z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col w-64 transition-width duration-75"
       aria-label="Sidebar"
     >
       <div class="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">

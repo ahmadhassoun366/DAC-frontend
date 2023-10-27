@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import MainDashboard from "./MainDashboard/MainDashboard";
 import Stock from "./Stocks/Stocks";
@@ -18,14 +18,10 @@ import TVAs from "./Managment/TVAs/TVAs";
 import Sell from "./Accounting/Sell/Sell";
 import Purchase from "./Accounting/Purchase/Purchase";
 const MainContent = () => {
-  const [itemID, setitemID] = useState(null);
 
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const onEdit = () => {
-    // alert("edit");
-  };
-
+  const [error,] = useState(null);
+  const [loading, ] = useState(false);
+ 
   if (loading) {
     return <div>Loading...</div>;
   }

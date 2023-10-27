@@ -1,5 +1,5 @@
 import { React, useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 // import Addunit from "../Units/Addunit";
 // import Editunit from "../Units/Editunit";
 import { toast } from "react-toastify";
@@ -7,11 +7,11 @@ import axios from "axios";
 
 const TVAs = () => {
   const [units, setUnits] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [editingUnit, setEditingUnit] = useState(null);
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [ setIsLoading] = useState(true);
+  const [ setError] = useState(null);
+  const [ setEditingUnit] = useState(null);
+  const [setIsAddModalOpen] = useState(false);
+  const [setIsEditModalOpen] = useState(false);
 
   const history = useNavigate();
 
@@ -19,9 +19,6 @@ const TVAs = () => {
     setIsAddModalOpen(true);
   };
 
-  const closeAddModal = () => {
-    setIsAddModalOpen(false);
-  };
 
   const openEditModal = (unit) => {
     setEditingUnit(unit);
@@ -30,14 +27,11 @@ const TVAs = () => {
 
 
 
-  const closeEditModal = () => {
-    setIsEditModalOpen(false);
-    setEditingUnit(null); // optional, in case you want to clear out the editing unit
-  };
 
   useEffect(() => {
     fetchUnits();
-  }, []);
+  });
+
   const fetchUnits = async () => {
     setIsLoading(true);
     try {
@@ -51,9 +45,7 @@ const TVAs = () => {
       setIsLoading(false);
     }
   };
-  const UpdateSettingUnits = () => {
-    fetchUnits();
-  }
+ 
   const handleDelete = (id) => {
     axios
       .delete(`http://127.0.0.1:8000/api/unit/${id}/delete`)

@@ -9,7 +9,7 @@ const Index = () => {
   const { isAuthenticated, login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error] = useState("");
 
   console.log("From login page");
   console.log(isAuthenticated);

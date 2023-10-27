@@ -7,8 +7,8 @@ import axios from "axios";
 
 const Subunits = () => {
     const [subunits, setsubunits] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [ setIsLoading] = useState(true);
+    const [ setError] = useState(null);
     const [editingUnit, setEditingUnit] = useState(null);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -38,7 +38,7 @@ const Subunits = () => {
     useEffect(() => {
         fetchUnits();
 
-    }, []);
+    });
 
     const fetchUnits = async () => {
         setIsLoading(true);

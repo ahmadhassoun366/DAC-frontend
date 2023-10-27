@@ -5,7 +5,7 @@ function ItemsSettings() {
     const [saleItemsCurrency, setSaleItemsCurrency] = useState("");
     const [itemUnit, setItemUnit] = useState("");
     const [costType, setCostType] = useState("");
-    const [itemInventoryBy, setItemInventoryBy] = useState("");
+    const [setItemInventoryBy] = useState("");
 
     return (
         <div className="flex items-start justify-center p-6">

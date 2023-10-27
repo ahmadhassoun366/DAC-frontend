@@ -10,8 +10,8 @@ const Addunit = (props) => {
     const [amount, setAmount] = useState("");
     const [Subunitlist, setSubunitlist] = useState([]);
 
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [ setIsLoading] = useState(true);
+    const [ setError] = useState(null);
     //fetch subunit http://127.0.0.1:8000/api/subunit/
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -66,7 +66,7 @@ const Addunit = (props) => {
     useEffect(() => {
         fetchSubUnits();
         console.log("heeeeeeeeeeeeeeeeeeeeee", Subunitlist)
-    }, [Subunitlist]);
+    });
     return (
         <div className="py-6 px-4">
             <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">

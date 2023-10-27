@@ -8,7 +8,7 @@ const Items = (props) => {
   const [items, setItems] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [currentitem, setcurrentitem] = useState(0);
+  const [ setcurrentitem] = useState(0);
   const manager = localStorage.getItem("userId");
 
   useEffect(() => {

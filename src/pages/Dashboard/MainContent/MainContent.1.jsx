@@ -15,13 +15,9 @@ import Managment from "./Managment/Managment";
 import TVAs from "./Managment/TVAs/TVAs";
 
 export const MainContent1 = () => {
-  const [itemID, setitemID] = useState(null);
 
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const onEdit = () => {
-    // alert("edit");
-  };
+  const [error, ] = useState(null);
+  const [loading, ] = useState(false);
 
   if (loading) {
     return <div>Loading...</div>;

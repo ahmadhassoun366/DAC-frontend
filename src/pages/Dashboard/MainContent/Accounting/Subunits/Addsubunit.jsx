@@ -4,7 +4,7 @@ const Addsubunit = (props) => {
     // State for form fields
     const [unitName, setUnitName] = useState("");
     const [symbol, setSymbol] = useState("");
-    const [subUnit, setSubUnit] = useState("");
+    const [subUnit] = useState("");
     const [operation, setOperation] = useState("");
     const [amount, setAmount] = useState(""); // New state for Amount
     //fetch subunit http://127.0.0.1:8000/api/subunit/

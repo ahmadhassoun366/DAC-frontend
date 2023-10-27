@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 const Additem = () => {
   const [supcode, setSupCode] = useState("");
@@ -7,12 +6,12 @@ const Additem = () => {
   const [name, setName] = useState("");
   const [unit, setUnit] = useState("");
   const [quantity, setQuantity] = useState();
-  const [total, setTotal] = useState(0);
+  const [total] = useState(0);
   const [tva, setTva] = useState();
-  const [ttc, setTtc] = useState(0);
+  const [ttc] = useState(0);
   const [place, setPlace] = useState("");
   const [addValueCost, setAddValueCost] = useState();
-  const [unit_price, setUnitPrice] = useState("");
+  const [ setUnitPrice] = useState("");
   const [cost, setCost] = useState(0);
   const [revenue, setRevenue] = useState(0);
   const [purchase, setPurchase] = useState(0);

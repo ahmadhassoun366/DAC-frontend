@@ -11,8 +11,8 @@ const Index = () => {
   const [last_name, setLast_name] = useState("");
   const [phone, setPhone] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [passwordMatch, setPasswordMatch] = useState(true);
+  const [setPasswordError] = useState("");
+  const [ setPasswordMatch] = useState(true);
 
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
