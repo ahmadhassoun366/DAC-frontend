@@ -2,11 +2,12 @@ import { useState, useContext } from "react";
 import Header from "../../../layout/header-layout/Header";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 const Index = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, login } = useContext(AuthContext);
+  const { isAuthenticated  } = useContext(AuthContext);
+  // const { login } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error] = useState("");
@@ -23,17 +24,18 @@ const Index = () => {
   };
 
   const handleLogin = async (e) => {
-    console.log(setPassword);
-    console.log(setEmail);
-    e.preventDefault();
-    try {
-      // Call your login function passing email and password
-      // await login(email, password);
-      navigate('/dashboard')
+    navigate('/dashboard')
 
-    } catch (error) {
-      toast.error("Invalid email or password"); // Set error message if login fails
-    }
+    // console.log(setPassword);
+    // console.log(setEmail);
+    // e.preventDefault();
+    // try {
+    //   // Call your login function passing email and password
+    //   // await login(email, password);
+
+    // } catch (error) {
+    //   toast.error("Invalid email or password"); // Set error message if login fails
+    // }
   };
   return (
     <>
