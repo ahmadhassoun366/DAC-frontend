@@ -54,9 +54,14 @@ const Sell = (props) => {
                                 <option value="GBP">GBP</option>
                             </select>
                         </div>
+                        <div className="InputInvoice">
+                            <label htmlFor="debit"> old balance </label>
+                            <input type="number" name="debit" id="debit" className="h-8 border mt-1 rounded px-4 w-full bg-gray-50" />
+                        </div>
 
                         <div className="InputInvoice">
-                            <label htmlFor="debit">Debit</label>
+                            <label htmlFor="debit">new balance
+                            </label>
                             <input type="number" name="debit" id="debit" className="h-8 border mt-1 rounded px-4 w-full bg-gray-50" />
                         </div>
                         <div className="InputInvoice aditm">
@@ -64,6 +69,37 @@ const Sell = (props) => {
                         </div>
                     </div>
                     <div className="ItemsContainer">
+                        <div className="Itemsparent">
+                            <div className="Itit">Image</div>
+                            <div className="Itit">Name</div>
+                            <div className="Itit">Catergory</div>
+                            <div className="Itit">Price</div>
+                            <div className="Itit">VAT</div>
+                            <div className="Itit">Quantity</div>
+                            <div className="Itit">Unit</div>
+                            <div className="Itit">Add Price</div>
+                        </div>
+                        <div className="Itemsparent">
+                            <div className="Ititv"><img src={p} alt="" /></div>
+                            <div className="Ititv">Product Laptop</div>
+                            <div className="Ititv">Electronics</div>
+                            <div className="Ititv">$850</div>
+                            <div className="Ititv">1%</div>
+                            <div className="Ititv"><button>-</button>1<button>+</button></div>
+                            <div className="Ititv">PC</div>
+                            <div className="Ititv"><input placeholder="NewPrice"></input></div>
+                        </div>
+                        <div className="Itemsparent">
+                            <div className="Ititv"><img src={p} alt="" /></div>
+                            <div className="Ititv">Product Laptop</div>
+                            <div className="Ititv">Electronics</div>
+                            <div className="Ititv">$850</div>
+                            <div className="Ititv">1%</div>
+                            <div className="Ititv"><button>-</button>1<button>+</button></div>
+                            <div className="Ititv">PC</div>
+                            <div className="Ititv"><input placeholder="NewPrice"></input></div>
+                        </div>
+                        {/* 
                         <div className="ItemAdded">
                             <span className="numberi">1</span>
                             <div className="ItemImage"><img src={p} alt="" /></div>
@@ -88,7 +124,8 @@ const Sell = (props) => {
                             <div className="ItemName ACTION">
                                 <button className="Actionbtn" ><img src={del} alt="" /></button>
                             </div>
-                        </div>
+                        </div> */}
+                        {/* 
                         <div className="ItemAdded">
                             <span className="numberi">2</span>
                             <div className="ItemImage"><img src={p} alt="" /></div>
@@ -113,7 +150,8 @@ const Sell = (props) => {
                             <div className="ItemName ACTION">
                                 <button className="Actionbtn" ><img src={del} alt="" /></button>
                             </div>
-                        </div>
+                        </div> */}
+
                     </div>
                     <div className="Infooter">
                         <div>
