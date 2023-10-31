@@ -27,37 +27,55 @@ const Managment = () => {
     softwave: <div>Softwave Content</div>,
   };
 
-  const modalButtonClasses =
-    "text-sm px-3 py-2 hover:bg-blue-200 hover:text-blue-700 focus:outline-none focus:bg-blue-200";
-  const activeButtonClasses = "bg-blue-500 text-white rounded";
-
   return (
-    <main className="pt-6 px-4 bg-gray-100 min-h-screen">
-      <header className="grid grid-cols-4 gap-4 mb-6">
-        <button
+    <main className="pt-6 px-4 bg-gray-100 min-h-screen text-gray-800 font-sans">
+      <header className="flex justify-around space-x-6 mb-6 border-b border-gray-300 pb-3 ">
+        <div
           onClick={() => setActivePage("mainFiles")}
-          className="bg-gray-800 text-white px-6 py-3 hover:bg-gray-700 rounded-lg shadow-md transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-700"
+          className={`${
+            activePage === "mainFiles"
+              ? "border-b-2 border-blue-500 text-blue-600"
+              : "text-gray-600 hover:text-gray-700 cursor-pointer"
+          } py-1 flex items-center`}
         >
-          <FaFileAlt className="mr-2 inline-block" /> Main files
-        </button>
-        <button
+          <FaFileAlt className="mr-2" /> Main files
+        </div>
+
+        <div
           onClick={() => setActivePage("reports")}
-          className="bg-gray-700 text-white px-6 py-3 hover:bg-gray-600 rounded-lg shadow-md transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-600"
+          className={`${
+            activePage === "reports"
+              ? "border-b-2 border-blue-500 text-blue-600"
+              : "text-gray-600 hover:text-gray-700 cursor-pointer"
+          } py-1 flex items-center`}
         >
-          <FaChartBar className="mr-2 inline-block" /> Reports
-        </button>
-        <button
+          <FaChartBar className="mr-2" /> Reports
+        </div>
+
+        <div
           onClick={() => setActivePage("utilities")}
-          className="bg-blue-900 text-white px-6 py-3 hover:bg-blue-800 rounded-lg shadow-md transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-800"
+          className={`${
+            activePage === "utilities"
+              ? "border-b-2 border-blue-500 text-blue-600"
+              : "text-gray-600 hover:text-gray-700 cursor-pointer"
+          } py-1 flex items-center`}
         >
-          <FaWrench className="mr-2 inline-block" /> Utilities
-        </button>
-        <button
-          onClick={() => setIsModalOpen(true)}
-          className="bg-gray-900 text-white px-6 py-3 hover:bg-gray-800 rounded-lg shadow-md transition-transform transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-800"
+          <FaWrench className="mr-2" /> Utilities
+        </div>
+
+        <div
+          onClick={() => {
+            setIsModalOpen(true);
+            setActivePage("setup");
+          }}
+          className={`${
+            activePage === "setup"
+              ? "border-b-2 border-blue-500 text-blue-600"
+              : "text-gray-600 hover:text-gray-700 cursor-pointer"
+          } py-1 flex items-center`}
         >
-          <FaCogs className="mr-2 inline-block" /> Setup
-        </button>
+          <FaCogs className="mr-2" /> Setup
+        </div>
       </header>
 
       {
@@ -75,15 +93,15 @@ const Managment = () => {
                 <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
               </div>
 
-              <div className="bg-white rounded-lg w-[800px] overflow-hidden shadow-xl transform transition-all">
-                <div className="flex justify-between items-center p-4 border-b border-gray-200">
+              <div className="bg-white rounded-lg w-[800px] shadow-lg transform transition-all border border-gray-300">
+                <div className="flex justify-between items-center p-4 border-b border-gray-300">
                   {Object.keys(components).map((key) => (
                     <button
                       key={key}
-                      className={`${modalButtonClasses} ${
+                      className={`text-blue-600 hover:bg-blue-100 px-2 py-1 rounded ${
                         activeComponent === key
-                          ? activeButtonClasses
-                          : "text-blue-500"
+                          ? "bg-blue-100 border-blue-500"
+                          : ""
                       }`}
                       onClick={() => setActiveComponent(key)}
                     >
@@ -91,7 +109,7 @@ const Managment = () => {
                     </button>
                   ))}
                   <button
-                    className="ml-4 bg-red-500 text-white rounded-full w-6 h-6 leading-none text-xs flex items-center justify-center focus:outline-none"
+                    className="ml-4 bg-red-200 text-red-600 rounded-full w-6 h-6 leading-none text-xs flex items-center justify-center focus:outline-none"
                     onClick={() => setIsModalOpen(false)}
                   >
                     X
