@@ -1,7 +1,6 @@
 import React from "react";
 
 import p from "./../../../../../Assets/p2.jpg";
-import del from "./../../../../../Assets/delete.png";
 import upd from "./../../../../../Assets/upload.png";
 const Sell = (props) => {
 
